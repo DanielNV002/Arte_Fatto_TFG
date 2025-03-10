@@ -1,0 +1,16 @@
+* {
+    -fx-font-family: "Forte";
+}
+
+#PanelSuperiorPage{
+    -fx-background-color: #622474; /* Color de fondo (morado) */
+}
+
+#TituloTienda {
+    -fx-background-color: #a65ebb; /* Color de fondo (morado claro) */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-font-size: 35px; /* Tamaño de la fuente */
+    -fx-background-radius: 20px; /* Bordes redondeados */
+    -fx-border-radius: 25px; /* Bordes redondeados */
+    -fx-padding: 10px 100px; /* Espaciado interno */
+}
