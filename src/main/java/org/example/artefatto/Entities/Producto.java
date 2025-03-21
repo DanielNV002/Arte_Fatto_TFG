@@ -2,7 +2,8 @@ package org.example.artefatto.Entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
-import javafx.scene.image.Image;
+
+import java.util.Arrays;
 
 @Entity
 @Table(name = "productos")
@@ -30,15 +31,16 @@ public class Producto {
     @Column(name = "disponible", nullable = false)
     private boolean disponible;
 
-    @Column(name = "imagen")
-    private Image imagen;
+    @Lob
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] imagen;
 
     // Constructor sin parámetros (requerido por Hibernate)
     public Producto() {
     }
 
     // Constructor con todos los parámetros (excepto idProducto)
-    public Producto(String nombre, Usuario usuario, String categoria, Double precio, boolean disponible, Image imagen) {
+    public Producto(String nombre, Usuario usuario, String categoria, Double precio, boolean disponible, byte[] imagen) {
         this.nombre = nombre;
         this.usuario = usuario;
         this.categoria = categoria;
@@ -96,11 +98,11 @@ public class Producto {
         this.disponible = disponible;
     }
 
-    public Image getImagen(){
+    public byte[] getImagen(){
         return imagen;
     }
 
-    public void setImagen(Image imagen){
+    public void setImagen(byte[] imagen){
         this.imagen = imagen;
     }
 
@@ -114,7 +116,7 @@ public class Producto {
                 ", categoria='" + categoria + '\'' +
                 ", precio=" + precio +
                 ", disponible=" + disponible +
-                ", imagen=" + imagen +
+                ", imagen=" + Arrays.toString(imagen) +
                 '}';
     }
 }

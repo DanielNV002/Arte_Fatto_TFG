@@ -90,7 +90,7 @@
 }
 
 #ButtonRegistro{
-    -fx-background-color: #e5d3e6;
+    -fx-background-color: rgba(165, 83, 189, 0);
     -fx-text-fill: black;
     -fx-text-decoration: line-through;
     -fx-font-size: 20px;
@@ -124,4 +124,19 @@
     -fx-border-color: #d1d1d1; /* Color del borde */
     -fx-border-width: 5px; /* Ancho del borde */
     -fx-background-radius: 25px; /* Borde Redondeado Fondo */
+}
+
+#ButtonRegistrarse{
+    -fx-background-color: #a65ebb;
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-min-width: 380px;
+    -fx-min-height: 60px;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#ButtonRegistrarse:hover {
+    -fx-background-color: #844596;
 }

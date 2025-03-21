@@ -37,12 +37,18 @@
     <Label id="InfoText" layoutX="150.0" layoutY="440.0" text="Contraseña"/>
     <TextField id="FieldTextRegister" layoutX="150.0" layoutY="480.0" text="*****************"/>
 
+    <Label id="InfoText" layoutX="150.0" layoutY="580.0" text="Correo"/>
+    <TextField id="FieldTextRegister" layoutX="150.0" layoutY="620.0" text="example@gmailcom"/>
+
     <Label id="InfoText" layoutX="650.0" layoutY="160.0" text="Apellidos"/>
     <TextField id="FieldTextRegister" layoutX="650.0" layoutY="200.0" text="Hernandez Guzman"/>
 
     <Label id="InfoText" layoutX="650.0" layoutY="300.0" text="Dirección"/>
     <TextField id="FieldTextRegister" layoutX="650.0" layoutY="340.0" text="C/ La Palmera 21"/>
 
-    <Button id="ButtonIniciarSesion" layoutX="810.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
+    <Label id="InfoText" layoutX="650.0" layoutY="440.0" text="Confirmar Contraseña"/>
+    <TextField id="FieldTextRegister" layoutX="650.0" layoutY="480.0" text="*****************"/>
+
+    <Button id="ButtonRegistrarse" layoutX="650.0" layoutY="620.0" mnemonicParsing="false" text="Entrar"/>
 
 </AnchorPane>

@@ -7,7 +7,7 @@
     <session-factory>
         <!-- Configuración de la conexión a la base de datos -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bibliotecafx</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/ArteFattoDB</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
@@ -24,6 +24,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property> <!-- Actualiza el esquema según las entidades -->
 
         <!-- Mappings -->
-        <mapping class="org.example.bibliotecajavafx.entities.Libros"/>
+        <mapping class="org.example.artefatto.Entities.Usuario"/>
+        <mapping class="org.example.artefatto.Entities.Producto"/>
     </session-factory>
 </hibernate-configuration>
