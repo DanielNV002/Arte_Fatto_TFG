@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="PanelSuperiorPage" layoutY="-1.0" prefHeight="80.0" prefWidth="1200.0" />
       <Label id="TituloTienda" layoutX="543.0" layoutY="56.0" text="Arte Fatto" textAlignment="CENTER" AnchorPane.leftAnchor="435" AnchorPane.topAnchor="50">
          <font>
-            <Font name="Symbol" size="30.0" />
+            <Font name="Comic Sans MS" size="30.0" />
          </font></Label>
    </children>
 </AnchorPane>

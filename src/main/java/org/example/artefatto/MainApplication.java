@@ -3,6 +3,7 @@ package org.example.artefatto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
@@ -23,6 +24,10 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+
+        //Font.getFamilies().forEach(System.out::println);
+        Font fuente = Font.loadFont(MainApplication.class.getResource("/fonts/Shrikhand-Regular.ttf").toExternalForm(), 14);
+
         launch();
     }
 }
