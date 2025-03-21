@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 
 import java.io.IOException;
@@ -19,14 +20,13 @@ public class MainApplication extends Application {
         stage.setTitle("ArteFatto");
         stage.setScene(scene);
         stage.setResizable(false);
-        //stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
     public static void main(String[] args) {
 
-        //Font.getFamilies().forEach(System.out::println);
-        Font fuente = Font.loadFont(MainApplication.class.getResource("/fonts/Shrikhand-Regular.ttf").toExternalForm(), 14);
+        Font font = Font.loadFont(MainApplication.class.getResourceAsStream("/resources/fonts/Shrikhand-Regular.ttf"), 20);
 
         launch();
     }

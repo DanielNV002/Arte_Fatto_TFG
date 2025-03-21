@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Pane id="PanelSuperiorPage" layoutY="-1.0" prefHeight="80.0" prefWidth="1200.0" />
-      <Label id="TituloTienda" layoutX="543.0" layoutY="56.0" text="Arte Fatto" textAlignment="CENTER" AnchorPane.leftAnchor="435" AnchorPane.topAnchor="50">
-         <font>
-            <Font name="Comic Sans MS" size="30.0" />
-         </font></Label>
-   </children>
+<?import javafx.scene.shape.Line?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1200.0" stylesheets="@../../../styles.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.artefatto.Controladores.Gestion_IniciarSesion">
+    <children>
+        <Pane id="PanelSuperiorPage" layoutY="-1.0" prefHeight="80.0" prefWidth="1200.0">
+            <children>
+                <Button id="ExitButton" fx:id="ButtonExit" layoutX="25.0" layoutY="14.0" mnemonicParsing="false"
+                        onAction="#handleExitButtonClick" text="X"/>
+            </children>
+        </Pane>
+        <Label id="TituloTienda" layoutX="408.0" layoutY="38.0" text="Arte Fatto" textAlignment="CENTER"
+               AnchorPane.leftAnchor="408.0" AnchorPane.topAnchor="38.0"/>
+        <ImageView fitHeight="291.0" fitWidth="239.0" layoutX="63.0" layoutY="223.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../img/BackGround/Back_pink_brush.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="144.0" fitWidth="115.0" layoutX="995.0" layoutY="108.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../img/BackGround/Back_lightBlue_paint.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="250.0" fitWidth="252.0" layoutX="705.0" layoutY="529.0" pickOnBounds="true"
+                   preserveRatio="true">
+            <image>
+                <Image url="@../../../img/BackGround/Back_green_mark.png"/>
+            </image>
+        </ImageView>
+        <Pane id="PanelMenuIniciarSesion" layoutX="345.0" layoutY="140.0"/>
+        <Line endX="475.0" layoutX="375.0" layoutY="190.0"/>
+        <Label id="WelcomeText" layoutX="490.0" layoutY="155.0" text="Bienvenido"/>
+        <Label id="InfoText" layoutX="390.0" layoutY="260.0" text="Nombre de Usuario"/>
+        <TextField fx:id="TFieldUsername" id="FieldText" layoutX="390.0" layoutY="300.0" text="Username"/>
+        <Label id="InfoText" layoutX="390.0" layoutY="400.0" text="Contraseña"/>
+        <TextField fx:id="TFieldContrasena" id="FieldText" layoutX="390.0" layoutY="440.0" text="Password"/>
+        <Button id="ButtonIniciarSesion" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
+        <Line endX="40.0" layoutX="590.0" layoutY="665.0"/>
+        <Button id="ButtonRegistro" layoutX="450.0" layoutY="640.0" mnemonicParsing="false" text="Registrate"/>
+        <Button id="ButtonRegistro" layoutX="635.0" layoutY="640.0" mnemonicParsing="false" text="Invitado"/>
+    </children>
 </AnchorPane>

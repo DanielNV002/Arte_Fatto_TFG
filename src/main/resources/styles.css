@@ -1,5 +1,10 @@
-* {
-    -fx-font-family: "MV Boli";
+@font-face {
+    font-family: 'Shrikhand';
+    src: url('fonts/Shrikhand-Regular.ttf') format('truetype');
+}
+
+.root {
+    -fx-font-family: "Shrikhand";
 }
 
 #PanelSuperiorPage{
@@ -9,8 +14,89 @@
 #TituloTienda {
     -fx-background-color: #a65ebb; /* Color de fondo (morado claro) */
     -fx-text-fill: white; /* Color del texto */
-    -fx-font-size: 35px; /* Tamaño de la fuente */
+    -fx-font-size: 40px; /* Tamaño de la fuente */
     -fx-background-radius: 20px; /* Bordes redondeados */
     -fx-border-radius: 25px; /* Bordes redondeados */
     -fx-padding: 10px 100px; /* Espaciado interno */
+}
+
+#ExitButton {
+    -fx-background-color: #a65ebb;
+    -fx-text-fill: white;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-min-width: 50px;
+    -fx-min-height: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#ExitButton:hover {
+    -fx-background-color: #844596;
+}
+
+#PanelMenuIniciarSesion {
+    -fx-background-color: rgba(165, 83, 189, 0.2);
+    -fx-background-radius: 20px;
+    -fx-min-width: 540px;
+    -fx-min-height: 600px;
+    -fx-border-radius: 25px;
+    -fx-padding: 10px 100px;  /* Esto está bien */
+    -fx-text-alignment: center;
+}
+
+#WelcomeText {
+    -fx-background-color: #e5d3e6; /* Color morado transparente sin transparencia */
+    -fx-padding: 10px 30px;
+    -fx-text-fill: black; /* Color del texto */
+    -fx-font-size: 30px; /* Tamaño de la fuente */
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+}
+
+#InfoText {
+    -fx-background-color: #e5d3e6; /* Color morado transparente sin transparencia */
+    -fx-text-fill: black; /* Color del texto */
+    -fx-font-size: 25px; /* Tamaño de la fuente */
+    -fx-font-weight: bold;
+}
+
+#FieldText {
+    -fx-background-color: white;  /* Fondo blanco */
+    -fx-text-fill: #d1d1d1; /* Color del texto */
+    -fx-font-size: 25px; /* Tamaño de la fuente */
+    -fx-font-weight: bold; /* Negrita */
+    -fx-min-width: 440px; /* Ancho mínimo */
+    -fx-border-radius: 50px;  /* Bordes redondeados */
+    -fx-border-color: #d1d1d1; /* Color del borde */
+    -fx-border-width: 5px; /* Ancho del borde */
+    -fx-background-radius: 50px; /* Borde Redondeado Fondo */
+}
+
+#ButtonIniciarSesion{
+    -fx-background-color: #a65ebb;
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-min-width: 200px;
+    -fx-min-height: 60px;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#ButtonIniciarSesion:hover {
+    -fx-background-color: #844596;
+}
+
+#ButtonRegistro{
+    -fx-background-color: #e5d3e6;
+    -fx-text-fill: black;
+    -fx-text-decoration: line-through;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-min-height: 40px;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
 }
