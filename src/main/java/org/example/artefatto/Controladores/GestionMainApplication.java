@@ -2,12 +2,19 @@ package org.example.artefatto.Controladores;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import org.example.artefatto.Util.SceneSelector;
 
-public class Gestion_IniciarSesion {
+import java.io.IOException;
+
+
+public class GestionMainApplication {
     @FXML
-    private Button ButtonExit;
+    private AnchorPane GIniciarSesion;
+    @FXML
+    private AnchorPane GRegistro;
+
     @FXML
     private TextField TFieldUsername;
     @FXML
@@ -15,24 +22,30 @@ public class Gestion_IniciarSesion {
 
     @FXML
     private void initialize() {
-        ButtonExit.setOnMouseClicked(event -> handleExitButtonClick());
 
-        // Usamos un FocusListener en lugar de MouseClicked para el comportamiento de los campos
-        TFieldUsername.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {  // Cuando el campo obtiene el foco
-                TFieldUsernameOnFocusGained();
-            } else {  // Cuando el campo pierde el foco
-                TFieldUsernameOnFocusLost();
-            }
-        });
+        if (TFieldUsername != null) {
+            TFieldUsername.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    TFieldUsernameOnFocusGained();
+                } else {
+                    TFieldUsernameOnFocusLost();
+                }
+            });
+        } else {
+            System.out.println("ERROR: TFieldUsername es NULL");
+        }
 
-        TFieldContrasena.focusedProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue) {  // Cuando el campo obtiene el foco
-                TFieldContrasenaOnFocusGained();
-            } else {  // Cuando el campo pierde el foco
-                TFieldContrasenaOnFocusLost();
-            }
-        });
+        if (TFieldContrasena != null) {
+            TFieldContrasena.focusedProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue) {
+                    TFieldContrasenaOnFocusGained();
+                } else {
+                    TFieldContrasenaOnFocusLost();
+                }
+            });
+        } else {
+            System.out.println("ERROR: TFieldContrasena es NULL");
+        }
     }
 
     @FXML
@@ -41,6 +54,11 @@ public class Gestion_IniciarSesion {
         Platform.exit();  // Esto cierra toda la aplicación
         System.exit(0);  // Esto garantiza que la aplicación termine correctamente
     }
+    @FXML
+    private void handleBackRegisterButtonClick() throws IOException {
+        new SceneSelector(GRegistro, "/org/example/artefatto/MainPage.fxml");
+    }
+
     // Métodos para gestionar el enfoque de los campos
     private void TFieldUsernameOnFocusGained() {
         if (TFieldUsername.getText().equals("Username")) {
@@ -65,4 +83,11 @@ public class Gestion_IniciarSesion {
             TFieldContrasena.setText("Password");  // Restaurar "Password" si está vacío
         }
     }
+
+    @FXML
+    private void handleButtonRegistroLinkClick() throws IOException {
+        new SceneSelector(GIniciarSesion, "/org/example/artefatto/RegisterPage.fxml");
+    }
+
+
 }

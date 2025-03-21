@@ -7,6 +7,7 @@
     -fx-font-family: "Shrikhand";
 }
 
+/*---------------------------- MAIN PAGE ----------------------------*/
 #PanelSuperiorPage{
     -fx-background-color: #622474; /* Color de fondo (morado) */
 }
@@ -55,7 +56,7 @@
 }
 
 #InfoText {
-    -fx-background-color: #e5d3e6; /* Color morado transparente sin transparencia */
+    -fx-background-color: rgba(165, 83, 189, 0);
     -fx-text-fill: black; /* Color del texto */
     -fx-font-size: 25px; /* Tamaño de la fuente */
     -fx-font-weight: bold;
@@ -67,10 +68,10 @@
     -fx-font-size: 25px; /* Tamaño de la fuente */
     -fx-font-weight: bold; /* Negrita */
     -fx-min-width: 440px; /* Ancho mínimo */
-    -fx-border-radius: 50px;  /* Bordes redondeados */
+    -fx-border-radius: 20px;  /* Bordes redondeados */
     -fx-border-color: #d1d1d1; /* Color del borde */
     -fx-border-width: 5px; /* Ancho del borde */
-    -fx-background-radius: 50px; /* Borde Redondeado Fondo */
+    -fx-background-radius: 25px; /* Borde Redondeado Fondo */
 }
 
 #ButtonIniciarSesion{
@@ -99,4 +100,28 @@
     -fx-background-radius: 50px;
     -fx-text-alignment: center;
     -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+
+/*---------------------------- REGISTER PAGE ----------------------------*/
+
+#PanelRegister{
+    -fx-background-color: rgba(165, 83, 189, 0.2);
+    -fx-background-radius: 20px;
+    -fx-min-width: 1000px;
+    -fx-min-height: 600px;
+    -fx-border-radius: 25px;
+    -fx-padding: 10px 100px;  /* Esto está bien */
+    -fx-text-alignment: center;
+}
+
+#FieldTextRegister {
+    -fx-background-color: white;  /* Fondo blanco */
+    -fx-text-fill: #d1d1d1; /* Color del texto */
+    -fx-font-size: 25px; /* Tamaño de la fuente */
+    -fx-font-weight: bold; /* Negrita */
+    -fx-min-width: 380px; /* Ancho mínimo */
+    -fx-border-radius: 20px;  /* Bordes redondeados */
+    -fx-border-color: #d1d1d1; /* Color del borde */
+    -fx-border-width: 5px; /* Ancho del borde */
+    -fx-background-radius: 25px; /* Borde Redondeado Fondo */
 }
