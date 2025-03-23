@@ -33,12 +33,12 @@
     <Line endX="475.0" layoutX="375.0" layoutY="190.0"/>
     <Label id="WelcomeText" layoutX="490.0" layoutY="155.0" text="Bienvenido"/>
     <Label id="InfoText" layoutX="390.0" layoutY="260.0" text="Nombre de Usuario"/>
-    <TextField fx:id="TFieldUsername" id="FieldText" layoutX="390.0" layoutY="300.0" text="Username"/>
+    <TextField fx:id="TFieldUsername" id="FieldText" layoutX="390.0" layoutY="300.0"/>
     <Label id="InfoText" layoutX="390.0" layoutY="400.0" text="Contraseña"/>
-    <TextField fx:id="TFieldContrasena" id="FieldText" layoutX="390.0" layoutY="440.0" text="Password"/>
-    <Button id="ButtonIniciarSesion" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
+    <PasswordField fx:id="TFieldContrasena" id="FieldText" layoutX="390.0" layoutY="440.0"/>
+    <Button id="ButtonIniciarSesion" onAction="#iniciarSesion" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
     <Line endX="40.0" layoutX="590.0" layoutY="665.0"/>
     <Button onAction="#handleButtonRegistroLinkClick" id="ButtonRegistro" layoutX="450.0"
             layoutY="640.0" mnemonicParsing="false" text="Registrate"/>
-    <Button id="ButtonRegistro" layoutX="635.0" layoutY="640.0" mnemonicParsing="false" text="Invitado"/>
+    <Button id="ButtonRegistro" layoutX="635.0" layoutY="640.0"  mnemonicParsing="false" text="Invitado"/>
 </AnchorPane>

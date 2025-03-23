@@ -8,16 +8,7 @@ public interface IUsuario {
     // Metodo para agregar un usuario
     void addUsuario(Usuario usuario);
 
-    // Metodo para cargar la lista de Usuarios
-    List<Usuario> loadUsuarios(List<Usuario> listaUsuarios);
-
-    // Metodo para actualizar un usuario dado el id
-    void updateUsuario(Long id, String nombre, String apellido, String direccion, String correo);
-
-    // Metodo para eliminar un usuario dado el id
-    void deleteUsuario(Long id);
-
-    // Metodo para buscar un usuario según nombre o id
-    Usuario searchUsuario(String nombre);
+    // Metodo para comprobar si el usuario existe
+    Usuario comprobarUsuario(String username, String password);
 
 }

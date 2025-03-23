@@ -29,26 +29,26 @@
     </ImageView>
     <Pane id="PanelRegister" layoutX="100.0" layoutY="140.0"/>
     <Label id="InfoText" layoutX="150.0" layoutY="160.0" text="Nombre"/>
-    <TextField id="FieldTextRegister" layoutX="150.0" layoutY="200.0" text="Miguel"/>
+    <TextField fx:id="TFieldName" id="FieldTextRegister" layoutX="150.0" layoutY="200.0"/>
 
     <Label id="InfoText" layoutX="150.0" layoutY="300.0" text="Nombre de Usuario"/>
-    <TextField id="FieldTextRegister" layoutX="150.0" layoutY="340.0" text="Pituñisen24"/>
+    <TextField fx:id="TFieldUsername" id="FieldTextRegister" layoutX="150.0" layoutY="340.0"/>
 
     <Label id="InfoText" layoutX="150.0" layoutY="440.0" text="Contraseña"/>
-    <TextField id="FieldTextRegister" layoutX="150.0" layoutY="480.0" text="*****************"/>
+    <TextField fx:id="TFieldContrasena" id="FieldTextRegister" layoutX="150.0" layoutY="480.0"/>
 
     <Label id="InfoText" layoutX="150.0" layoutY="580.0" text="Correo"/>
-    <TextField id="FieldTextRegister" layoutX="150.0" layoutY="620.0" text="example@gmailcom"/>
+    <TextField fx:id="TFieldCorreo" id="FieldTextRegister" layoutX="150.0" layoutY="620.0"/>
 
     <Label id="InfoText" layoutX="650.0" layoutY="160.0" text="Apellidos"/>
-    <TextField id="FieldTextRegister" layoutX="650.0" layoutY="200.0" text="Hernandez Guzman"/>
+    <TextField fx:id="TFieldApellidos" id="FieldTextRegister" layoutX="650.0" layoutY="200.0"/>
 
     <Label id="InfoText" layoutX="650.0" layoutY="300.0" text="Dirección"/>
-    <TextField id="FieldTextRegister" layoutX="650.0" layoutY="340.0" text="C/ La Palmera 21"/>
+    <TextField fx:id="TFieldDireccion" id="FieldTextRegister" layoutX="650.0" layoutY="340.0"/>
 
     <Label id="InfoText" layoutX="650.0" layoutY="440.0" text="Confirmar Contraseña"/>
-    <TextField id="FieldTextRegister" layoutX="650.0" layoutY="480.0" text="*****************"/>
+    <TextField fx:id="TFieldContrasenaConfirm" id="FieldTextRegister" layoutX="650.0" layoutY="480.0"/>
 
-    <Button id="ButtonRegistrarse" layoutX="650.0" layoutY="620.0" mnemonicParsing="false" text="Entrar"/>
+    <Button id="ButtonRegistrarse" layoutX="650.0" onAction="#handleRegistroUsuario" layoutY="620.0" mnemonicParsing="false" text="Entrar"/>
 
 </AnchorPane>

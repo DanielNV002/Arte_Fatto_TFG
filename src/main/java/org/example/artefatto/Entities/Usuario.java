@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.Arrays;
+
 @Entity
 @Table(name = "usuarios")
 public class Usuario {
@@ -34,13 +36,16 @@ public class Usuario {
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", message = "El correo electrónico no es válido.")
     private String correo;
 
+    @Column(name = "ProfileImage", columnDefinition = "BLOB")
+    private byte[] profileImage;
+
     // Constructor sin parámetros (requerido por Hibernate)
     public Usuario() {
     }
 
     // Constructor con todos los parámetros
-    public Usuario(Long idUsuario, String nombre, String apellido, String nombreUsuario,
-                   String direccion, String contrasena, String correo) {
+    public Usuario(Long idUsuario, String apellido, String contrasena, String correo,
+                   String direccion, String nombre, String nombreUsuario, byte[] profileImage) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -48,6 +53,7 @@ public class Usuario {
         this.direccion = direccion;
         this.contrasena = contrasena;
         this.correo = correo;
+        this.profileImage = profileImage;
     }
 
     // Getters y Setters
@@ -107,6 +113,14 @@ public class Usuario {
         this.correo = correo;
     }
 
+    public byte[] getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(byte[] profileImage) {
+        this.profileImage = profileImage;
+    }
+
     // Método toString()
     @Override
     public String toString() {
@@ -117,6 +131,7 @@ public class Usuario {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", correo='" + correo + '\'' +
+                ", image='" + Arrays.toString(profileImage) + '\'' +
                 '}';
     }
 }

@@ -40,7 +40,8 @@ public class Producto {
     }
 
     // Constructor con todos los parámetros (excepto idProducto)
-    public Producto(String nombre, Usuario usuario, String categoria, Double precio, boolean disponible, byte[] imagen) {
+    public Producto(Long idProducto, String nombre, Usuario usuario, String categoria, Double precio, boolean disponible, byte[] imagen) {
+        this.idProducto = idProducto;
         this.nombre = nombre;
         this.usuario = usuario;
         this.categoria = categoria;

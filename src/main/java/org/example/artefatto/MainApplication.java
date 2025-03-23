@@ -45,7 +45,7 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
 
         Font font = Font.loadFont(MainApplication.class.getResourceAsStream("/resources/fonts/Shrikhand-Regular.ttf"), 20);
-        crearTablas();
+        //crearTablas();
         launch();
     }
 }
