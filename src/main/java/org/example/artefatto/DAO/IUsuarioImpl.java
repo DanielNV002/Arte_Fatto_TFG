@@ -2,9 +2,12 @@ package org.example.artefatto.DAO;
 
 import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.HibernateUtil;
+import org.example.artefatto.Util.SessionManager;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+
+import java.util.List;
 
 public class IUsuarioImpl implements IUsuario {
     @Override
@@ -35,6 +38,27 @@ public class IUsuarioImpl implements IUsuario {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    @Override
+    public void actualizarUsuario(Usuario usuario) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.merge(usuario);
+            session.getTransaction().commit();
+        }
+    }
+
+    @Override
+    public Usuario actualUser() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            String hql = "FROM Usuario WHERE conectado = :conectado";
+            Query<Usuario> query = session.createQuery(hql, Usuario.class);
+            query.setParameter("conectado", true);
+            List<Usuario> usuarios = query.getResultList();
+            if(usuarios.isEmpty()) return null;
+            return usuarios.getFirst();
         }
     }
 }

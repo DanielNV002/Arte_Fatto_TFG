@@ -8,6 +8,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.example.artefatto.DAO.IMainAppImpl;
 import org.example.artefatto.Util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -45,7 +46,9 @@ public class MainApplication extends Application {
     public static void main(String[] args) {
 
         Font font = Font.loadFont(MainApplication.class.getResourceAsStream("/resources/fonts/Shrikhand-Regular.ttf"), 20);
-        //crearTablas();
+        crearTablas();
+        IMainAppImpl mainApp = new IMainAppImpl();
+        mainApp.generarCategoriasBase();
         launch();
     }
 }

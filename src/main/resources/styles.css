@@ -143,17 +143,9 @@
 
 /*---------------------------- START SHOP PAGE ----------------------------*/
 
-#UserButton {
-    -fx-background-color: #a65ebb;
-    -fx-text-fill: white;
-    -fx-font-size: 23px;
+#UserProfileName{
+    -fx-background-color: rgba(165, 83, 189, 0);
+    -fx-text-fill: white; /* Color del texto */
+    -fx-font-size: 18px; /* Tamaño de la fuente */
     -fx-font-weight: bold;
-    -fx-min-width: 50px;
-    -fx-min-height: 50px;
-    -fx-background-radius: 50px;
-    -fx-text-alignment: center;
-    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
-}
-#UserButton:hover {
-    -fx-background-color: #844596;
 }

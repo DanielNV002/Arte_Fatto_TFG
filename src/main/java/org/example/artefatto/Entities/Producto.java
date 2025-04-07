@@ -22,8 +22,9 @@ public class Producto {
     @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
 
-    @Column(name = "categoria", length = 50)
-    private String categoria;
+    @ManyToOne
+    @JoinColumn(name = "id_categoria", nullable = false) // Asegúrate de que el nombre coincide con la BD
+    private Categoria categoria;
 
     @Column(name = "precio", nullable = false)
     private Double precio;
@@ -32,15 +33,15 @@ public class Producto {
     private boolean disponible;
 
     @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] imagen;
+    @Column(name = "imagen")
+    private String imagen;
 
     // Constructor sin parámetros (requerido por Hibernate)
     public Producto() {
     }
 
     // Constructor con todos los parámetros (excepto idProducto)
-    public Producto(Long idProducto, String nombre, Usuario usuario, String categoria, Double precio, boolean disponible, byte[] imagen) {
+    public Producto(Long idProducto, String nombre, Usuario usuario, Categoria categoria, Double precio, boolean disponible, String imagen) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -75,11 +76,11 @@ public class Producto {
         this.usuario = usuario;
     }
 
-    public String getCategoria() {
+    public Categoria getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
 
@@ -99,11 +100,11 @@ public class Producto {
         this.disponible = disponible;
     }
 
-    public byte[] getImagen(){
+    public String getImagen(){
         return imagen;
     }
 
-    public void setImagen(byte[] imagen){
+    public void setImagen(String imagen){
         this.imagen = imagen;
     }
 
@@ -114,10 +115,10 @@ public class Producto {
                 "idProducto=" + idProducto +
                 ", nombre='" + nombre + '\'' +
                 ", usuario=" + usuario.getIdUsuario() +  // Mostrar solo el ID del usuario
-                ", categoria='" + categoria + '\'' +
+                ", categoria='" + categoria.getNombre() + '\'' +
                 ", precio=" + precio +
                 ", disponible=" + disponible +
-                ", imagen=" + Arrays.toString(imagen) +
+                ", imagen=" + imagen +
                 '}';
     }
 }

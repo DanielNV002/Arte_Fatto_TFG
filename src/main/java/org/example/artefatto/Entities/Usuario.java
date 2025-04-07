@@ -36,8 +36,11 @@ public class Usuario {
     @Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$", message = "El correo electrónico no es válido.")
     private String correo;
 
-    @Column(name = "ProfileImage", columnDefinition = "BLOB")
-    private byte[] profileImage;
+    @Column(name = "ProfileImage")
+    private String profileImage;
+
+    @Column(name = "conectado")
+    private boolean conectado = false;
 
     // Constructor sin parámetros (requerido por Hibernate)
     public Usuario() {
@@ -45,7 +48,7 @@ public class Usuario {
 
     // Constructor con todos los parámetros
     public Usuario(Long idUsuario, String apellido, String contrasena, String correo,
-                   String direccion, String nombre, String nombreUsuario, byte[] profileImage) {
+                   String direccion, String nombre, String nombreUsuario, String profileImage, boolean conectado) {
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -54,6 +57,7 @@ public class Usuario {
         this.contrasena = contrasena;
         this.correo = correo;
         this.profileImage = profileImage;
+        this.conectado = conectado;
     }
 
     // Getters y Setters
@@ -113,12 +117,20 @@ public class Usuario {
         this.correo = correo;
     }
 
-    public byte[] getProfileImage() {
+    public String getProfileImage() {
         return profileImage;
     }
 
-    public void setProfileImage(byte[] profileImage) {
+    public void setProfileImage(String profileImage) {
         this.profileImage = profileImage;
+    }
+
+    public boolean isConectado() {
+        return conectado;
+    }
+
+    public void setConectado(boolean conectado) {
+        this.conectado = conectado;
     }
 
     // Método toString()
@@ -131,7 +143,7 @@ public class Usuario {
                 ", nombreUsuario='" + nombreUsuario + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", correo='" + correo + '\'' +
-                ", image='" + Arrays.toString(profileImage) + '\'' +
+                ", image='" + profileImage + '\'' +
                 '}';
     }
 }
