@@ -43,6 +43,10 @@ public class GestionFirstShopPage {
         new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
     }
 
+    private void handleButtonCategoryLinkClick() throws IOException {
+            new SceneSelector(GFirstShopPage, "/org/example/artefatto/CategoryShopPage.fxml");
+    }
+
     private void usuarioActivo(){
         IUsuarioImpl iUsuario = new IUsuarioImpl();
         System.out.println(iUsuario.actualUser().getNombreUsuario());
@@ -68,7 +72,6 @@ public class GestionFirstShopPage {
         for (Categoria categoria : categoriaDAO.getCategoriesFromDatabase()) {
             AnchorPane card = crearCardCategoria(categoria);
 
-            // Añadir la card al GridPane, en la columna correcta
             categoriaContainer.add(card, columna, fila);
 
             // Ajustar columna y fila
@@ -90,7 +93,16 @@ public class GestionFirstShopPage {
             controller.setDatos(categoria.getNombre(), categoria.getImagen());
             controller.setOnVerMas(() -> {
                 System.out.println("➡️ Has pulsado en: " + categoria.getNombre());
-                // Aquí haces la navegación o lógica que quieras
+                try {
+                    SessionManager sM = new SessionManager();
+                    sM.setCategoriaActiva(categoria);
+                    ICategoriaImpl ICat = new ICategoriaImpl();
+                    ICat.actualizarCategoria(categoria);
+
+                    handleButtonCategoryLinkClick();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             return card;

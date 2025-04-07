@@ -7,4 +7,7 @@ public interface ICategoria {
 
     List<Categoria> getCategoriesFromDatabase();
 
+    void actualizarCategoria(Categoria categoria);
+
+    Categoria actualCategoria();
 }

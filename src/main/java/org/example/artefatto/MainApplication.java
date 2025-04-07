@@ -4,11 +4,16 @@ import javafx.animation.FadeTransition;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import org.example.artefatto.DAO.ICategoriaImpl;
 import org.example.artefatto.DAO.IMainAppImpl;
+import org.example.artefatto.DAO.IUsuarioImpl;
+import org.example.artefatto.Entities.Categoria;
+import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -48,7 +53,21 @@ public class MainApplication extends Application {
         Font font = Font.loadFont(MainApplication.class.getResourceAsStream("/resources/fonts/Shrikhand-Regular.ttf"), 20);
         crearTablas();
         IMainAppImpl mainApp = new IMainAppImpl();
+        IUsuarioImpl iUsu = new IUsuarioImpl();
         mainApp.generarCategoriasBase();
+
+        Usuario U = iUsu.comprobarUsuario("a", "a");
+        ICategoriaImpl iCat = new ICategoriaImpl();
+
+        // BARAJAS -----------------------------------------------------------------------------------------------------
+        mainApp.anadirProducto("Baraja001", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "/resources/img/Barajas/Baraja001.jpg");
+
+        // DIY -----------------------------------------------------------------------------------------------------
+
+        // ILUSTRACIONES -----------------------------------------------------------------------------------------------------
+
+        // POCIONES -----------------------------------------------------------------------------------------------------
+
         launch();
     }
 }

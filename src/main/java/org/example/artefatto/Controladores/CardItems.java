@@ -19,7 +19,22 @@ public class CardItems {
     @FXML
     private Button verMasButton;
 
+    // ✅ Para categorías
     public void setDatos(String nombre, String rutaImagen) {
+        setNombreYImagen(nombre, rutaImagen);
+    }
+
+    // ✅ Para productos (nombre + imagen + precio opcional)
+    public void setDatosProducto(String nombre, String rutaImagen, Double precio) {
+        String texto = nombre;
+        if (precio != null) {
+            texto += " - " + String.format("%.2f €", precio);
+        }
+        setNombreYImagen(texto, rutaImagen);
+    }
+
+    // 🔁 Método común para evitar duplicación
+    private void setNombreYImagen(String nombre, String rutaImagen) {
         categoriaNombre.setText(nombre);
 
         File file = new File(rutaImagen);
@@ -27,10 +42,11 @@ public class CardItems {
             categoriaImagen.setImage(new Image(file.toURI().toString()));
         } else {
             System.out.println("⚠️ Imagen no encontrada: " + rutaImagen);
-            categoriaImagen.setImage(new Image("/org/example/artefatto/assets/default.png"));
+            //categoriaImagen.setImage(new Image("src/main/resources/img/Product/default.jpg"));
         }
     }
 
+    // Mismo para ambas
     public void setOnVerMas(Runnable accion) {
         verMasButton.setOnAction(e -> accion.run());
     }

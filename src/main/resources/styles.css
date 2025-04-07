@@ -149,3 +149,19 @@
     -fx-font-size: 18px; /* Tamaño de la fuente */
     -fx-font-weight: bold;
 }
+
+/*---------------------------- CATEGORY SHOP PAGE ----------------------------*/
+
+#PanelTituloCategoria{
+    -fx-background-color: rgba(165, 83, 189, 0.2);
+    -fx-background-radius: 20px;
+    -fx-border-radius: 25px;
+    -fx-padding: 10px 30px;
+    -fx-text-fill: black; /* Color del texto */
+    -fx-font-size: 30px; /* Tamaño de la fuente */
+    -fx-font-weight: bold;
+}
+
+#TituloCategoria{
+    -fx-background-color: #e5d3e6;
+}

@@ -4,33 +4,38 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            xmlns="http://javafx.com/javafx"
             fx:controller="org.example.artefatto.Controladores.CardItems"
-            prefHeight="250" prefWidth="200"
-            style="-fx-background-color: #f4f4f4; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ddd; -fx-padding: 10;">
+            prefHeight="320" prefWidth="250"
+            style="-fx-background-color: #fff; -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ddd; -fx-padding: 10;">
 
     <!-- Imagen -->
     <ImageView fx:id="categoriaImagen"
-               fitHeight="100"
-               fitWidth="170"
+               fitHeight="130"
+               fitWidth="210"
                preserveRatio="true"
                layoutX="20"
                layoutY="20"
-               style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0, 2, 2) -fx-background-radius: 10; -fx-border-radius: 10; -fx-border-color: #ddd;" />
+               style="-fx-background-radius: 10px;
+                      -fx-border-radius: 10px;  /* Bordes redondeados */
+                      -fx-border-color: #ddd; /* Color del borde */
+                      -fx-border-width: 2px; /* Ancho del borde */"/>
 
     <!-- Nombre de la categoría -->
     <Label fx:id="categoriaNombre"
-           layoutX="60"
-           layoutY="120"
-           style="-fx-font-size: 18px; -fx-text-fill: #2c3e50;" />
+           layoutX="20"
+           layoutY="150"
+           prefWidth="210"
+           alignment="CENTER"
+           style="-fx-font-size: 25px; -fx-text-fill: #2c3e50;  -fx-background-color: transparent;"/>
 
     <!-- Botón -->
     <Button fx:id="verMasButton"
-            layoutX="60"
-            layoutY="180"
-            prefWidth="80"
+            layoutX="55"
+            layoutY="260"
+            prefWidth="140"
             text="Ver más"
-            style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" />
+            alignment="CENTER"
+            style="-fx-background-color: #3498db; -fx-font-size: 18px; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;"/>
 </AnchorPane>
