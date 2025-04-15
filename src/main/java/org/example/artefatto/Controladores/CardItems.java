@@ -26,11 +26,7 @@ public class CardItems {
 
     // ✅ Para productos (nombre + imagen + precio opcional)
     public void setDatosProducto(String nombre, String rutaImagen, Double precio) {
-        String texto = nombre;
-        if (precio != null) {
-            texto += " - " + String.format("%.2f €", precio);
-        }
-        setNombreYImagen(texto, rutaImagen);
+        setNombreYImagen(nombre, rutaImagen);
     }
 
     // 🔁 Método común para evitar duplicación

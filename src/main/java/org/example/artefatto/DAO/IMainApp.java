@@ -7,4 +7,5 @@ public interface IMainApp {
 
     void generarCategoriasBase();
     void anadirProducto(String nombre, Usuario usuario, Categoria categoria, double precio, boolean disponible, String imagen);
+    void anadirUsuario(Long idUsuario, String apellido, String contrasena, String correo, String direccion, String nombre, String nombreUsuario, String profileImage, boolean conectado);
 }

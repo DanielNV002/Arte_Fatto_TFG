@@ -56,17 +56,39 @@ public class MainApplication extends Application {
         IUsuarioImpl iUsu = new IUsuarioImpl();
         mainApp.generarCategoriasBase();
 
-        Usuario U = iUsu.comprobarUsuario("a", "a");
+        // USUARIOS ----------------------------------------------------------------------------------------------------
+        mainApp.anadirUsuario(null, "admin", "admin", "admin", "admin", "admin", "admin", "/img/Users/UserBaseProfile.png", false);
+
+        Usuario U = iUsu.comprobarUsuario("admin", "admin");
         ICategoriaImpl iCat = new ICategoriaImpl();
 
         // BARAJAS -----------------------------------------------------------------------------------------------------
-        mainApp.anadirProducto("Baraja001", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "/resources/img/Barajas/Baraja001.jpg");
+        mainApp.anadirProducto("Baraja Dorada", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "src/main/resources/img/Product/Barajas/Baraja001.jpg");
+        mainApp.anadirProducto("Baraja Real", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "src/main/resources/img/Product/Barajas/Baraja002.jpg");
+        mainApp.anadirProducto("Baraja Mini-Red", U, iCat.getCategoriesFromDatabase().get(1), 25.0, true, "src/main/resources/img/Product/Barajas/Baraja003.jpg");
+        mainApp.anadirProducto("Baraja Gatuna", U, iCat.getCategoriesFromDatabase().get(1), 30.0, true, "src/main/resources/img/Product/Barajas/Baraja004.jpg");
+        mainApp.anadirProducto("Baraja Mitica", U, iCat.getCategoriesFromDatabase().get(1), 45.0, true, "src/main/resources/img/Product/Barajas/Baraja005.jpg");
 
-        // DIY -----------------------------------------------------------------------------------------------------
+        // DIY ---------------------------------------------------------------------------------------------------------
+        mainApp.anadirProducto("V8 Wood Motor", U, iCat.getCategoriesFromDatabase().getFirst(), 20.0, true, "src/main/resources/img/Product/DIY/DIY001.jpg");
+        mainApp.anadirProducto("Wood Cabinette", U, iCat.getCategoriesFromDatabase().getFirst(), 20.0, true, "src/main/resources/img/Product/DIY/DIY002.jpg");
+        mainApp.anadirProducto("Soporte Portatil", U, iCat.getCategoriesFromDatabase().getFirst(), 25.0, true, "src/main/resources/img/Product/DIY/DIY003.jpg");
+        mainApp.anadirProducto("Wooden Calendar", U, iCat.getCategoriesFromDatabase().getFirst(), 30.0, true, "src/main/resources/img/Product/DIY/DIY004.jpg");
+        mainApp.anadirProducto("Soporte Plantas", U, iCat.getCategoriesFromDatabase().getFirst(), 45.0, true, "src/main/resources/img/Product/DIY/DIY005.jpg");
 
-        // ILUSTRACIONES -----------------------------------------------------------------------------------------------------
+        // ILUSTRACIONES -----------------------------------------------------------------------------------------------
+        mainApp.anadirProducto("Dark Style", U, iCat.getCategoriesFromDatabase().get(2), 20.0, true, "src/main/resources/img/Product/Ilustraciones/Ilu001.jpg");
+        mainApp.anadirProducto("Kittys", U, iCat.getCategoriesFromDatabase().get(2), 20.0, true, "src/main/resources/img/Product/Ilustraciones/Ilu002.jpg");
+        mainApp.anadirProducto("Floral", U, iCat.getCategoriesFromDatabase().get(2), 25.0, true, "src/main/resources/img/Product/Ilustraciones/Ilu003.jpg");
+        mainApp.anadirProducto("Chibi Boy", U, iCat.getCategoriesFromDatabase().get(2), 30.0, true, "src/main/resources/img/Product/Ilustraciones/Ilu004.jpg");
+        mainApp.anadirProducto("Afternoon City", U, iCat.getCategoriesFromDatabase().get(2), 45.0, true, "src/main/resources/img/Product/Ilustraciones/Ilu005.jpg");
 
-        // POCIONES -----------------------------------------------------------------------------------------------------
+        // POCIONES ----------------------------------------------------------------------------------------------------
+        mainApp.anadirProducto("Hermit Purple", U, iCat.getCategoriesFromDatabase().get(3), 20.0, true, "src/main/resources/img/Product/Pociones/Pocion001.jpg");
+        mainApp.anadirProducto("ILove", U, iCat.getCategoriesFromDatabase().get(3), 20.0, true, "src/main/resources/img/Product/Pociones/Pocion002.jpg");
+        mainApp.anadirProducto("Midnight", U, iCat.getCategoriesFromDatabase().get(3), 25.0, true, "src/main/resources/img/Product/Pociones/Pocion003.jpg");
+        mainApp.anadirProducto("Spider Venom", U, iCat.getCategoriesFromDatabase().get(3), 30.0, true, "src/main/resources/img/Product/Pociones/Pocion004.jpg");
+        mainApp.anadirProducto("Hombre Lobo", U, iCat.getCategoriesFromDatabase().get(3), 45.0, true, "src/main/resources/img/Product/Pociones/Pocion005.jpg");
 
         launch();
     }

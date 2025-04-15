@@ -67,8 +67,8 @@ public class GestionCategoryShopPage {
     private void generarCardsProductos() {
         IProductoImpl productoDAO = new IProductoImpl();
         ICategoriaImpl categoriaDAO = new ICategoriaImpl();
-
         Categoria categoriaActiva = categoriaDAO.actualCategoria();
+
         if (categoriaActiva == null) {
             System.out.println("⚠ No hay categoría activa");
             return;
@@ -108,6 +108,4 @@ public class GestionCategoryShopPage {
             return new AnchorPane(); // fallback
         }
     }
-
-
 }
