@@ -21,6 +21,10 @@
     -fx-padding: 10px 100px; /* Espaciado interno */
 }
 
+#UserButton{
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+
 #ExitButton {
     -fx-background-color: #a65ebb;
     -fx-text-fill: white;
@@ -33,6 +37,21 @@
     -fx-cursor: hand; /* Esto cambia el cursor a una mano */
 }
 #ExitButton:hover {
+    -fx-background-color: #844596;
+}
+
+#BackButton {
+    -fx-background-color: #a65ebb;
+    -fx-text-fill: white;
+    -fx-font-size: 23px;
+    -fx-font-weight: bold;
+    -fx-min-width: 100px;
+    -fx-min-height: 50px;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#BackButton:hover {
     -fx-background-color: #844596;
 }
 
@@ -164,4 +183,157 @@
 
 #TituloCategoria{
     -fx-background-color: #e5d3e6;
+}
+
+#TituloTienda2 {
+    -fx-background-color: #a65ebb; /* Color de fondo (morado claro) */
+    -fx-text-fill: white; /* Color del texto */
+    -fx-font-size: 30px; /* Tamaño de la fuente */
+    -fx-background-radius: 20px; /* Bordes redondeados */
+    -fx-border-radius: 25px; /* Bordes redondeados */
+    -fx-padding: 5px 60px; /* Espaciado interno */
+}
+
+#AppButton{
+    -fx-background-color: #a65ebb;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-min-width: 50px;
+    -fx-min-height: 25px;
+    -fx-background-radius: 25px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#AppButton:hover {
+    -fx-background-color: #844596;
+}
+
+#ImageItem{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 25px;  /* Bordes redondeados */
+    -fx-border-color: #ddd; /* Color del borde */
+    -fx-border-width: 2px; /* Ancho del borde */
+}
+#ImageItem:hover {
+    -fx-background-color: #844596;
+    -fx-scale-x: 1.1; /* Aumenta el ancho en un 10% */
+    -fx-scale-y: 1.1; /* Aumenta la altura en un 10% */
+    -fx-transition: all 1s ease; /* Transición suave de 0.3 segundos */
+}
+
+#verMasButton{
+    -fx-background-color: #3498db;
+    -fx-font-size: 15px;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+#verMasButton:hover {
+    -fx-background-color: #267db7;
+}
+
+/*---------------------------- PRODUCT SHOP PAGE ----------------------------*/
+
+#PanelInfo{
+    -fx-background-color: #e6e6e6;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2px;
+}
+#PanelInfoCompra{
+    -fx-background-color: #844596;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #7c3f8d;
+    -fx-border-width: 2px;
+}
+#PanelInfoCompra_1{
+    -fx-background-color: #9754aa;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #8d509f;
+    -fx-border-width: 2px;
+}
+#PanelInfoCompra_2{
+    -fx-background-color: #b36cc7;
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+    -fx-border-color: #8d509f;
+    -fx-border-width: 2px;
+}
+
+#ImageItemProducto{
+    -fx-background-radius: 10px;
+    -fx-border-radius: 25px;  /* Bordes redondeados */
+    -fx-border-color: #ddd; /* Color del borde */
+    -fx-border-width: 2px; /* Ancho del borde */
+}
+
+#ButtonComprar{
+    -fx-background-color: #844596;
+    -fx-text-fill: white;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 50px;
+    -fx-text-alignment: center;
+    -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#ButtonComprar:hover{
+    -fx-background-color: #a14aba;
+}
+
+#UserPane{
+    -fx-background-color: #a65ebb;
+    -fx-background-radius: 200px;
+}
+
+#UserProfile{
+    -fx-text-fill: white;
+    -fx-font-size: 32px;
+}
+#IDProfile{
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+}
+#FieldTextUser{
+    -fx-background-color: white;  /* Fondo blanco */
+    -fx-text-fill: #d1d1d1; /* Color del texto */
+    -fx-font-size: 20px; /* Tamaño de la fuente */
+    -fx-font-weight: bold; /* Negrita */
+    -fx-min-width: 200px; /* Ancho mínimo */
+    -fx-border-radius: 20px;  /* Bordes redondeados */
+    -fx-border-color: #d1d1d1; /* Color del borde */
+    -fx-border-width: 5px; /* Ancho del borde */
+    -fx-background-radius: 25px; /* Borde Redondeado Fondo */
+}
+
+#ButtonGuardar{
+        -fx-background-color: #de97f3;
+        -fx-text-fill: white;
+        -fx-font-size: 20px;
+        -fx-font-weight: bold;
+        -fx-background-radius: 50px;
+        -fx-text-alignment: center;
+        -fx-cursor: hand; /* Esto cambia el cursor a una mano */
+}
+#ButtonGuardar:hover{
+    -fx-background-color: #c77bde;
+}
+
+#infoUpdateText{
+        -fx-font-size: 13px;
+        -fx-cursor: hand;
+}
+
+#ButtonEliminar{
+    -fx-background-color: #ed115b;
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+}
+#ButtonEliminar:hover {
+    -fx-background-color: #c00947;
 }

@@ -28,5 +28,6 @@
         <mapping class="org.example.artefatto.Entities.Usuario"/>
         <mapping class="org.example.artefatto.Entities.Producto"/>
         <mapping class="org.example.artefatto.Entities.Categoria"/>
+        <mapping class="org.example.artefatto.Entities.Compras"/>
     </session-factory>
 </hibernate-configuration>

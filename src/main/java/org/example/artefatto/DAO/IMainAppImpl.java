@@ -55,7 +55,7 @@ public class IMainAppImpl implements IMainApp {
     }
 
     @Override
-    public void anadirProducto(String nombre, Usuario usuario, Categoria categoria, double precio, boolean disponible, String imagen) {
+    public void anadirProducto(String nombre, String descripcion, Usuario usuario, Categoria categoria, double precio, boolean disponible, String imagen) {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -74,6 +74,7 @@ public class IMainAppImpl implements IMainApp {
 
             Producto producto = new Producto();
             producto.setNombre(nombre);
+            producto.setDescripcion(descripcion);
             producto.setUsuario(usuario);
             producto.setCategoria(categoria);
             producto.setPrecio(precio);

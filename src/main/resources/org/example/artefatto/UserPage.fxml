@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
+
+<?import javafx.scene.control.TextField?>
+<AnchorPane fx:id="GUserPage" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.artefatto.Controladores.GestionUsuario"
+            prefHeight="400.0" prefWidth="600.0">
+    <ImageView fitHeight="291.0" fitWidth="239.0" layoutX="63.0" layoutY="223.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../../../img/BackGround/Back_pink_brush.png"/>
+    </ImageView>
+    <ImageView fitHeight="144.0" fitWidth="115.0" layoutX="995.0" layoutY="108.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../../../img/BackGround/Back_lightBlue_paint.png"/>
+    </ImageView>
+    <ImageView fitHeight="250.0" fitWidth="252.0" layoutX="705.0" layoutY="529.0" pickOnBounds="true"
+               preserveRatio="true">
+        <Image url="@../../../img/BackGround/Back_green_mark.png"/>
+    </ImageView>
+
+    <Pane id="PanelSuperiorPage" layoutY="-1.0" prefHeight="80.0" prefWidth="1200.0">
+        <Button id="BackButton" layoutX="25.0" layoutY="14.0" mnemonicParsing="false"
+                 text="Back" onAction="#handleButtonCategoryShopLinkClick"/>
+
+        <Label id="TituloTienda2" layoutX="470.0" layoutY="10.0" text="Arte Fatto" textAlignment="CENTER"/>
+        <Button id="AppButton" layoutX="760.0" layoutY="25.0" mnemonicParsing="false">
+            <graphic>
+                <ImageView fitWidth="25.0" fitHeight="25">
+                    <Image url="@../../../img/compra.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+        <Button id="AppButton" layoutX="410.0" layoutY="25.0" mnemonicParsing="false">
+            <graphic>
+                <ImageView fitWidth="25" fitHeight="25">
+                    <Image url="@../../../img/favoritos.png" />
+                </ImageView>
+            </graphic>
+        </Button>
+    </Pane>
+
+    <Pane id="PanelInfoCompra" layoutX="50" layoutY="140" prefHeight="600.0" prefWidth="1300.0">
+        <Pane id="UserPane" layoutX="25.0" layoutY="25" prefHeight="300.0" prefWidth="300.0"/>
+        <ImageView id="UserButton" layoutX="50.0" layoutY="50.0" fitWidth="250" fitHeight="250">
+            <Image url="@../../../img/Users/UserBaseProfile.png"/>
+        </ImageView>
+        <Label fx:id="UserProfileName" id="UserProfile" layoutX="70.0" layoutY="380.0" text="Invitado" textAlignment="CENTER"
+               alignment="CENTER" styleClass="UserProfileName" prefWidth="200.0"/>
+        <Label fx:id="IdProfileName" id="IDProfile" layoutX="70.0" layoutY="430.0" text="000" textAlignment="CENTER"
+               alignment="CENTER" styleClass="UserProfileName" prefWidth="200.0"/>
+        <Label fx:id="GmailProfileName" id="IDProfile" layoutX="20" layoutY="480.0" text="000" textAlignment="CENTER"
+               alignment="CENTER" styleClass="UserProfileName" prefWidth="300.0"/>
+    </Pane>
+
+    <Pane id="PanelInfoCompra_1" layoutX="400" layoutY="140" prefHeight="600.0" prefWidth="800.0">
+        <Label id="IDProfile" layoutX="40.0" layoutY="50.0" text="Nombre"/>
+        <TextField fx:id="TFieldName" id="FieldTextUser" layoutX="40.0" layoutY="80.0"/>
+        <Label id="IDProfile" layoutX="40.0" layoutY="150.0" text="Apellido"/>
+        <TextField fx:id="TFieldSurname" id="FieldTextUser" layoutX="40.0" layoutY="180.0"/>
+        <Label id="IDProfile" layoutX="40.0" layoutY="250.0" text="Correo"/>
+        <TextField fx:id="TFieldEmail" id="FieldTextUser" layoutX="40.0" layoutY="280.0"/>
+        <Label id="IDProfile" layoutX="40.0" layoutY="350.0" text="Dirección"/>
+        <TextField fx:id="TFieldDireccion" id="FieldTextUser" layoutX="40.0" layoutY="380.0"/>
+        <Label id="IDProfile" layoutX="40.0" layoutY="450.0" text="Apodo"/>
+        <TextField fx:id="TFieldApodo" id="FieldTextUser" layoutX="40.0" layoutY="480.0"/>
+    </Pane>
+
+    <Pane id="PanelInfoCompra_2" layoutX="800" layoutY="140" prefHeight="600.0" prefWidth="500.0">
+        <Button
+                id="ButtonGuardar"
+                layoutX="20.0"
+                layoutY="80.0"
+                prefWidth="365"
+                prefHeight="80"
+                mnemonicParsing="false"
+                text="Guardar Cambios"
+                onAction="#guardarUsuario"
+        />
+        <Button
+                id="ButtonGuardar"
+                layoutX="20.0"
+                layoutY="210.0"
+                prefWidth="365"
+                prefHeight="80"
+                mnemonicParsing="false"
+                text="Gestionar Productos"
+        />
+        <Label id="infoUpdateText" layoutX="100.0" layoutY="270.0" text="*Estará en la siguiente update"/>
+        <Button
+                id="ButtonGuardar"
+                layoutX="20.0"
+                layoutY="340.0"
+                prefWidth="365"
+                prefHeight="80"
+                mnemonicParsing="false"
+                text="Cerrar Sesion"
+                onAction="#cerrarSesion"
+        />
+        <Button
+                id="ButtonEliminar"
+                layoutX="75.0"
+                layoutY="480.0"
+                prefWidth="250"
+                prefHeight="60"
+                mnemonicParsing="false"
+                text="Eliminar Cuenta"
+        />
+    </Pane>
+
+</AnchorPane>

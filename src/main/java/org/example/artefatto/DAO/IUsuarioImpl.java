@@ -45,10 +45,26 @@ public class IUsuarioImpl implements IUsuario {
     public void actualizarUsuario(Usuario usuario) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            session.merge(usuario);
+
+            // Buscar al usuario en la base de datos por ID
+            Usuario usuarioExistente = session.get(Usuario.class, usuario.getIdUsuario());
+
+            if (usuarioExistente != null) {
+                // Actualizar todos los campos
+                usuarioExistente.setNombre(usuario.getNombre());
+                usuarioExistente.setApellido(usuario.getApellido());
+                usuarioExistente.setCorreo(usuario.getCorreo());
+                usuarioExistente.setDireccion(usuario.getDireccion());
+                usuarioExistente.setNombreUsuario(usuario.getNombreUsuario());
+                // Si hay más campos obligatorios, agrégalos aquí también
+
+                session.merge(usuarioExistente);
+            }
+
             session.getTransaction().commit();
         }
     }
+
 
     @Override
     public Usuario actualUser() {

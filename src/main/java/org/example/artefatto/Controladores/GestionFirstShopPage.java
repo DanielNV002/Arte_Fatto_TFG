@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import org.example.artefatto.DAO.IUsuarioImpl;
 import org.example.artefatto.Entities.Categoria;
@@ -112,4 +113,7 @@ public class GestionFirstShopPage {
         }
     }
 
+    public void goToUserPage(MouseEvent mouseEvent) throws IOException {
+        new SceneSelector(GFirstShopPage, "/org/example/artefatto/UserPage.fxml");
+    }
 }

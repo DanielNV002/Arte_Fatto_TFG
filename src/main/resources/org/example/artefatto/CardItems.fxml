@@ -12,15 +12,12 @@
 
     <!-- Imagen -->
     <ImageView fx:id="categoriaImagen"
+               id="ImageItem"
                fitHeight="130"
                fitWidth="210"
                preserveRatio="true"
                layoutX="20"
-               layoutY="20"
-               style="-fx-background-radius: 10px;
-                      -fx-border-radius: 10px;  /* Bordes redondeados */
-                      -fx-border-color: #ddd; /* Color del borde */
-                      -fx-border-width: 2px; /* Ancho del borde */"/>
+               layoutY="20"/>
 
     <!-- Nombre de la categoría -->
     <Label fx:id="categoriaNombre"
@@ -32,10 +29,10 @@
 
     <!-- Botón -->
     <Button fx:id="verMasButton"
+            id="verMasButton"
             layoutX="55"
             layoutY="260"
             prefWidth="140"
             text="Ver más"
-            alignment="CENTER"
-            style="-fx-background-color: #3498db; -fx-font-size: 15px; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;"/>
+            alignment="CENTER"/>
 </AnchorPane>

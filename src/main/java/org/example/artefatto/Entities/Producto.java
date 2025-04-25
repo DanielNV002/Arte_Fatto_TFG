@@ -29,6 +29,9 @@ public class Producto {
     @Column(name = "precio", nullable = false)
     private Double precio;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @Column(name = "disponible", nullable = false)
     private boolean disponible;
 
@@ -36,12 +39,15 @@ public class Producto {
     @Column(name = "imagen")
     private String imagen;
 
+    @Column(name = "is_active")
+    private Boolean isActive = false;
+
     // Constructor sin parámetros (requerido por Hibernate)
     public Producto() {
     }
 
     // Constructor con todos los parámetros (excepto idProducto)
-    public Producto(Long idProducto, String nombre, Usuario usuario, Categoria categoria, Double precio, boolean disponible, String imagen) {
+    public Producto(Long idProducto, String nombre, String descripcion, Usuario usuario, Categoria categoria, Double precio, boolean disponible, String imagen, boolean isActive) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.usuario = usuario;
@@ -49,6 +55,8 @@ public class Producto {
         this.precio = precio;
         this.disponible = disponible;
         this.imagen = imagen;
+        this.descripcion = descripcion;
+        this.isActive = isActive;
     }
 
     // Getters y Setters
@@ -70,6 +78,14 @@ public class Producto {
 
     public Usuario getUsuario() {
         return usuario;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setUsuario(Usuario usuario) {
@@ -108,17 +124,27 @@ public class Producto {
         this.imagen = imagen;
     }
 
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
     // Método toString()
+
     @Override
     public String toString() {
         return "Producto{" +
                 "idProducto=" + idProducto +
                 ", nombre='" + nombre + '\'' +
-                ", usuario=" + usuario.getIdUsuario() +  // Mostrar solo el ID del usuario
-                ", categoria='" + categoria.getNombre() + '\'' +
+                ", usuario=" + usuario +
+                ", categoria=" + categoria +
                 ", precio=" + precio +
+                ", descripcion='" + descripcion + '\'' +
                 ", disponible=" + disponible +
-                ", imagen=" + imagen +
+                ", imagen='" + imagen + '\'' +
                 '}';
     }
 }

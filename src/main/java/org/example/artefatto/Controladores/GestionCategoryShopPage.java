@@ -3,6 +3,7 @@ package org.example.artefatto.Controladores;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import org.example.artefatto.DAO.ICategoriaImpl;
 import org.example.artefatto.DAO.IProductoImpl;
@@ -90,6 +91,10 @@ public class GestionCategoryShopPage {
         }
     }
 
+    private void handleButtonProductLinkClick() throws IOException {
+        new SceneSelector(GCategoryShopPage, "/org/example/artefatto/ProductInfoPage.fxml");
+    }
+
     private AnchorPane crearCardProducto(Producto producto) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/artefatto/CardItems.fxml"));
@@ -99,7 +104,16 @@ public class GestionCategoryShopPage {
             controller.setDatosProducto(producto.getNombre(), producto.getImagen(), producto.getPrecio());
             controller.setOnVerMas(() -> {
                 System.out.println("🛒 Has pulsado en producto: " + producto.getNombre());
-                // Aquí puedes cargar una vista de detalle o lo que necesites
+                try {
+                    SessionManager sM = new SessionManager();
+                    sM.setProductoActivo(producto);
+                    IProductoImpl IProd = new IProductoImpl();
+                    IProd.actualizarProducto(producto);
+
+                    handleButtonProductLinkClick();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             });
 
             return card;
@@ -107,5 +121,9 @@ public class GestionCategoryShopPage {
             e.printStackTrace();
             return new AnchorPane(); // fallback
         }
+    }
+
+    public void goToUserPage(MouseEvent mouseEvent) throws IOException {
+        new SceneSelector(GCategoryShopPage, "/org/example/artefatto/UserPage.fxml");
     }
 }
