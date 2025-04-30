@@ -55,6 +55,7 @@ public class MainApplication extends Application {
 
         // USUARIOS ----------------------------------------------------------------------------------------------------
         mainApp.anadirUsuario(null, "admin", "admin", "admin", "admin", "admin", "admin", "/img/Users/UserBaseProfile.png", false);
+        mainApp.anadirUsuario(null, "invitado", "invitado", "invitado", "invitado", "invitado", "invitado", "/img/Users/UserBaseProfile.png", false);
 
         Usuario U = iUsu.comprobarUsuario("admin", "admin");
         ICategoriaImpl iCat = new ICategoriaImpl();

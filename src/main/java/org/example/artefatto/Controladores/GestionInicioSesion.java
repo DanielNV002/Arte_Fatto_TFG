@@ -1,6 +1,7 @@
 package org.example.artefatto.Controladores;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,12 +28,28 @@ public class GestionInicioSesion {
     private void handleButtonRegistroLinkClick() throws IOException {
         new SceneSelector(GIniciarSesion, "/org/example/artefatto/RegisterPage.fxml");
     }
+
+    @FXML
+    public void handleButtonInvitadoLinkClick(ActionEvent actionEvent) throws IOException {
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        Usuario actualUser = iUsuario.comprobarUsuario("invitado", "invitado");
+        if(actualUser == null){
+            TFieldUsername.setText("DATOS INCORRECTOS");
+            TFieldContrasena1.setText("");
+        }else if(actualUser.getNombreUsuario().equals("invitado") && actualUser.getContrasena().equals("invitado")){
+            SessionManager sM = new SessionManager();
+            sM.logIn(actualUser);
+            new SceneSelector(GIniciarSesion, "/org/example/artefatto/FirstShopPage.fxml");
+        }
+    }
+
     @FXML
     private void handleExitButtonClick() {
         // Cerrar la aplicación usando Platform.exit() o primaryStage.close()
         Platform.exit();  // Esto cierra toda la aplicación
         System.exit(0);  // Esto garantiza que la aplicación termine correctamente
     }
+
     @FXML
     private void iniciarSesion() throws IOException {
         IUsuarioImpl iUsuario = new IUsuarioImpl();

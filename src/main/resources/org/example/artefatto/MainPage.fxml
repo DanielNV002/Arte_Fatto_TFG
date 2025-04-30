@@ -38,5 +38,6 @@
     <Line endX="40.0" layoutX="590.0" layoutY="665.0"/>
     <Button onAction="#handleButtonRegistroLinkClick" id="ButtonRegistro" layoutX="450.0"
             layoutY="640.0" mnemonicParsing="false" text="Registrate"/>
-    <Button id="ButtonRegistro" layoutX="635.0" layoutY="640.0"  mnemonicParsing="false" text="Invitado"/>
+    <Button onAction="#handleButtonInvitadoLinkClick" id="ButtonRegistro" layoutX="635.0"
+            layoutY="640.0"  mnemonicParsing="false" text="Invitado"/>
 </AnchorPane>

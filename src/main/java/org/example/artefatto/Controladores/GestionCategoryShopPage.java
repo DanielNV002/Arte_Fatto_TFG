@@ -10,6 +10,7 @@ import org.example.artefatto.DAO.IProductoImpl;
 import org.example.artefatto.DAO.IUsuarioImpl;
 import org.example.artefatto.Entities.Categoria;
 import org.example.artefatto.Entities.Producto;
+import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.SceneSelector;
 import org.example.artefatto.Util.SessionManager;
 
@@ -92,7 +93,14 @@ public class GestionCategoryShopPage {
     }
 
     private void handleButtonProductLinkClick() throws IOException {
-        new SceneSelector(GCategoryShopPage, "/org/example/artefatto/ProductInfoPage.fxml");
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        Usuario actualUser = iUsuario.actualUser();
+
+        if(actualUser.getNombreUsuario().equalsIgnoreCase("invitado")){
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/MainPage.fxml");
+        }else{
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/ProductInfoPage.fxml");
+        }
     }
 
     private AnchorPane crearCardProducto(Producto producto) {
@@ -124,6 +132,12 @@ public class GestionCategoryShopPage {
     }
 
     public void goToUserPage(MouseEvent mouseEvent) throws IOException {
-        new SceneSelector(GCategoryShopPage, "/org/example/artefatto/UserPage.fxml");
-    }
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        Usuario actualUser = iUsuario.actualUser();
+
+        if(actualUser.getNombreUsuario().equalsIgnoreCase("invitado")){
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/MainPage.fxml");
+        }else{
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/UserPage.fxml");
+        }    }
 }

@@ -111,6 +111,7 @@
                 prefHeight="60"
                 mnemonicParsing="false"
                 text="Eliminar Cuenta"
+                onAction="#eliminarCuenta"
         />
     </Pane>
 

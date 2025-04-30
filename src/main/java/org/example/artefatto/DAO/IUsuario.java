@@ -15,4 +15,7 @@ public interface IUsuario {
     //Buscar Usuario activo
     Usuario actualUser();
 
+    //Eliminar cuenta
+    void eliminarCuenta(Usuario usuario);
+
 }

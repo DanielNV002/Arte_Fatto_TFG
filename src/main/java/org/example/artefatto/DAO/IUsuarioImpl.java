@@ -28,18 +28,23 @@ public class IUsuarioImpl implements IUsuario {
     @Override
     public Usuario comprobarUsuario(String username, String password) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM Usuario WHERE nombreUsuario = :username AND contrasena = :password";
+            String hql = "FROM Usuario WHERE nombreUsuario = :username";
             Query<Usuario> query = session.createQuery(hql, Usuario.class);
             query.setParameter("username", username);
-            query.setParameter("password", password);
 
-            Usuario usuario = query.uniqueResult();  // Obtener un solo resultado
-            return usuario;  // Si existe, retorna true; si no, false
+            Usuario usuario = query.uniqueResult();
+
+            if (usuario != null && usuario.getContrasena().equals(password)) {
+                return usuario;
+            } else {
+                return null;
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
+
 
     @Override
     public void actualizarUsuario(Usuario usuario) {
@@ -56,15 +61,14 @@ public class IUsuarioImpl implements IUsuario {
                 usuarioExistente.setCorreo(usuario.getCorreo());
                 usuarioExistente.setDireccion(usuario.getDireccion());
                 usuarioExistente.setNombreUsuario(usuario.getNombreUsuario());
+                usuarioExistente.setConectado(usuario.isConectado());
                 // Si hay más campos obligatorios, agrégalos aquí también
 
                 session.merge(usuarioExistente);
             }
-
             session.getTransaction().commit();
         }
     }
-
 
     @Override
     public Usuario actualUser() {
@@ -77,4 +81,27 @@ public class IUsuarioImpl implements IUsuario {
             return usuarios.getFirst();
         }
     }
+
+    @Override
+    public void eliminarCuenta(Usuario usuario) {
+        Transaction transaction = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            // Obtener el usuario desde la base de datos usando su ID
+            Usuario usuarioExistente = session.get(Usuario.class, usuario.getIdUsuario());
+
+            if (usuarioExistente != null) {
+                session.remove(usuarioExistente);  // Eliminar el usuario
+            }
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();  // Manejo básico de errores
+        }
+    }
+
 }

@@ -1,6 +1,8 @@
 package org.example.artefatto.Controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -10,6 +12,7 @@ import org.example.artefatto.Util.SceneSelector;
 import org.example.artefatto.Util.SessionManager;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class GestionUsuario {
     public AnchorPane GUserPage;
@@ -71,5 +74,23 @@ public class GestionUsuario {
         IUsuarioImpl iUsuario = new IUsuarioImpl();
         sM.logOut(iUsuario.actualUser());
         new SceneSelector(GUserPage, "/org/example/artefatto/MainPage.fxml");
+    }
+
+    @FXML
+    private void eliminarCuenta() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmar eliminación");
+        alert.setHeaderText("¿Está seguro de que desea eliminar la cuenta?");
+        alert.setContentText("Esta acción no se puede deshacer.");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK){
+            // Aquí puedes poner la lógica de eliminación de cuenta si la hay
+            IUsuarioImpl iUsuario = new IUsuarioImpl();
+            iUsuario.eliminarCuenta(iUsuario.actualUser());
+
+            // Cambiar de escena
+            new SceneSelector(GUserPage, "/org/example/artefatto/MainPage.fxml");
+        }
     }
 }

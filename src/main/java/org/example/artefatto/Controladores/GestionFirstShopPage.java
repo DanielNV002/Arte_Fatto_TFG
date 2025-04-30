@@ -3,29 +3,24 @@ package org.example.artefatto.Controladores;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
+import org.example.artefatto.DAO.ICategoriaImpl;
 import org.example.artefatto.DAO.IUsuarioImpl;
 import org.example.artefatto.Entities.Categoria;
+import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.SceneSelector;
 import org.example.artefatto.Util.SessionManager;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import org.example.artefatto.DAO.ICategoriaImpl;
 
-import java.io.File;
 import java.io.IOException;
 
 public class GestionFirstShopPage {
-    public ScrollPane categoriaScroll;
+    public Label UserProfileName;
     @FXML
     private GridPane categoriaContainer;
-
-    public Label UserProfileName;
     @FXML
     private AnchorPane GFirstShopPage;
 
@@ -45,15 +40,15 @@ public class GestionFirstShopPage {
     }
 
     private void handleButtonCategoryLinkClick() throws IOException {
-            new SceneSelector(GFirstShopPage, "/org/example/artefatto/CategoryShopPage.fxml");
+        new SceneSelector(GFirstShopPage, "/org/example/artefatto/CategoryShopPage.fxml");
     }
 
-    private void usuarioActivo(){
+    private void usuarioActivo() {
         IUsuarioImpl iUsuario = new IUsuarioImpl();
-        System.out.println(iUsuario.actualUser().getNombreUsuario());
+        Usuario actualUser = iUsuario.actualUser();
 
         if (UserProfileName != null) {
-            UserProfileName.setText(iUsuario.actualUser().getNombreUsuario());
+            UserProfileName.setText(actualUser.getNombreUsuario());
         } else {
             System.out.println("❌ Error: UserProfileName es null");
         }
@@ -84,7 +79,6 @@ public class GestionFirstShopPage {
         }
     }
 
-
     private AnchorPane crearCardCategoria(Categoria categoria) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/artefatto/CardItems.fxml"));
@@ -114,6 +108,13 @@ public class GestionFirstShopPage {
     }
 
     public void goToUserPage(MouseEvent mouseEvent) throws IOException {
-        new SceneSelector(GFirstShopPage, "/org/example/artefatto/UserPage.fxml");
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        Usuario actualUser = iUsuario.actualUser();
+
+        if(actualUser.getNombreUsuario().equalsIgnoreCase("invitado")){
+            new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
+        }else{
+            new SceneSelector(GFirstShopPage, "/org/example/artefatto/UserPage.fxml");
+        }
     }
 }
