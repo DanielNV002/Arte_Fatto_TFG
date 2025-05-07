@@ -337,3 +337,8 @@
 #ButtonEliminar:hover {
     -fx-background-color: #c00947;
 }
+
+#LabelInfo{
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
+}

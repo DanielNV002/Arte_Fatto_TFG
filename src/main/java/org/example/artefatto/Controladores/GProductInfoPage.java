@@ -95,7 +95,6 @@ public class GProductInfoPage {
         new Thread(task).start();
     }
 
-
     private void cargarProducto(){
         IProductoImpl IProd = new IProductoImpl();
         productoNombre.setText(IProd.actualProducto().getNombre());
