@@ -93,7 +93,7 @@ public class IUsuarioImpl implements IUsuario {
             if (usuarioExistente != null) {
                 session.remove(usuarioExistente);  // Eliminar el usuario
             }
-
+//a
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
