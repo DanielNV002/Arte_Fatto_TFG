@@ -1,5 +1,6 @@
 package org.example.artefatto.Controladores;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -139,5 +140,20 @@ public class GestionCategoryShopPage {
             new SceneSelector(GCategoryShopPage, "/org/example/artefatto/MainPage.fxml");
         }else{
             new SceneSelector(GCategoryShopPage, "/org/example/artefatto/UserPage.fxml");
-        }    }
+        }
+    }
+
+    public void handleButtonCartShopLinkClick(ActionEvent actionEvent) throws IOException {
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        Usuario actualUser = iUsuario.actualUser();
+
+        if(actualUser.getNombreUsuario().equalsIgnoreCase("invitado")){
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/MainPage.fxml");
+        }else{
+            SessionManager sM = new SessionManager();
+            ICategoriaImpl ICat = new ICategoriaImpl();
+            sM.setCategoriaInactiva(ICat.actualCategoria());
+            new SceneSelector(GCategoryShopPage, "/org/example/artefatto/CartPage.fxml");
+        }
+    }
 }

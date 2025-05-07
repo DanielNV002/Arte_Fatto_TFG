@@ -1,6 +1,7 @@
 package org.example.artefatto.Controladores;
 
 import javafx.animation.PauseTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,13 +10,17 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 import org.example.artefatto.DAO.ICategoriaImpl;
+import org.example.artefatto.DAO.IComprasImpl;
 import org.example.artefatto.DAO.IProductoImpl;
 import org.example.artefatto.DAO.IUsuarioImpl;
+import org.example.artefatto.Entities.Compras;
 import org.example.artefatto.Util.SceneSelector;
 import org.example.artefatto.Util.SessionManager;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class GProductInfoPage {
@@ -67,7 +72,6 @@ public class GProductInfoPage {
         productoUserUpload.setText(IProd.actualProducto().getUsuario().getNombreUsuario());
     }
 
-    @FXML
     private void setLabelAlCarrito() {
         labelAlCarrito.setText("Añadido al carrito");
 
@@ -78,5 +82,29 @@ public class GProductInfoPage {
 
     public void goToUserPage(MouseEvent mouseEvent) throws IOException {
         new SceneSelector(GProductInfoPage, "/org/example/artefatto/UserPage.fxml");
+    }
+
+    public void handleButtonCartShopLinkClick(ActionEvent actionEvent) throws IOException {
+        SessionManager sM = new SessionManager();
+        ICategoriaImpl ICat = new ICategoriaImpl();
+        IProductoImpl IProd = new IProductoImpl();
+        sM.setProductoInactivo(IProd.actualProducto());
+        sM.setCategoriaInactiva(ICat.actualCategoria());
+        new SceneSelector(GProductInfoPage, "/org/example/artefatto/CartPage.fxml");
+    }
+
+    @FXML
+    public void Comprar(ActionEvent actionEvent) {
+        IUsuarioImpl iUsuario = new IUsuarioImpl();
+        IComprasImpl iCompras = new IComprasImpl();
+        IProductoImpl IProd = new IProductoImpl();
+        Compras C = new Compras();
+        C.setId_usuario(iUsuario.actualUser());
+        C.setId_producto(IProd.actualProducto());
+        C.setPagado(false);
+        C.setFecha_compra(Date.valueOf(LocalDate.now()));
+
+        iCompras.anadirCompra(C);
+        setLabelAlCarrito();
     }
 }
