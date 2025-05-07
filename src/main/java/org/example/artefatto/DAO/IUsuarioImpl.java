@@ -62,7 +62,6 @@ public class IUsuarioImpl implements IUsuario {
                 usuarioExistente.setDireccion(usuario.getDireccion());
                 usuarioExistente.setNombreUsuario(usuario.getNombreUsuario());
                 usuarioExistente.setConectado(usuario.isConectado());
-                // Si hay más campos obligatorios, agrégalos aquí también
 
                 session.merge(usuarioExistente);
             }

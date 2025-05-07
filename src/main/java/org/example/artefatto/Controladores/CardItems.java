@@ -1,8 +1,11 @@
 package org.example.artefatto.Controladores;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -10,6 +13,7 @@ import java.io.File;
 
 public class CardItems {
 
+    public ProgressIndicator spinner;
     @FXML
     private ImageView categoriaImagen;
 
@@ -43,7 +47,44 @@ public class CardItems {
     }
 
     // Mismo para ambas
-    public void setOnVerMas(Runnable accion) {
-        verMasButton.setOnAction(e -> accion.run());
+    public void setOnVerMas(Runnable accionPesada) {
+        verMasButton.setOnAction(e -> {
+            verMasButton.setDisable(true);
+            spinner.setVisible(true); // Mostrar antes de que la UI se bloquee
+
+            Task<Void> task = new Task<>() {
+                @Override
+                protected Void call() {
+                    try {
+                        // Aquí iría el trabajo pesado si lo tuvieras separado
+                        // Simular con Thread.sleep o similar si es necesario
+                        Thread.sleep(300); // solo para forzar actualización del spinner
+
+                        // Ejecuta la acción principal en el hilo de JavaFX
+                        Platform.runLater(() -> {
+                            accionPesada.run();
+                            spinner.setVisible(false);
+                            verMasButton.setDisable(false);
+                        });
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void failed() {
+                    Platform.runLater(() -> {
+                        spinner.setVisible(false);
+                        verMasButton.setDisable(false);
+                        System.out.println("❌ Error al ejecutar acción del botón");
+                    });
+                }
+            };
+
+            new Thread(task).start();
+        });
     }
+
 }

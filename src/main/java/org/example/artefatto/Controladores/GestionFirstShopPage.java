@@ -1,8 +1,11 @@
 package org.example.artefatto.Controladores;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -19,6 +22,7 @@ import java.io.IOException;
 
 public class GestionFirstShopPage {
     public Label UserProfileName;
+    public ProgressIndicator spinner;
     @FXML
     private GridPane categoriaContainer;
     @FXML
@@ -32,11 +36,34 @@ public class GestionFirstShopPage {
     }
 
     @FXML
-    private void handleButtonFirstShopLinkClick() throws IOException {
-        SessionManager sM = new SessionManager();
-        IUsuarioImpl iUsuario = new IUsuarioImpl();
-        sM.logOut(iUsuario.actualUser());
-        new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
+    private void handleButtonFirstShopLinkClick() {
+        spinner.setVisible(true); // Mostrar spinner antes de empezar
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                SessionManager sM = new SessionManager();
+                IUsuarioImpl iUsuario = new IUsuarioImpl();
+                sM.logOut(iUsuario.actualUser());
+
+                // Cambiar de escena debe hacerse en el hilo de JavaFX
+                Platform.runLater(() -> {
+                    try {
+                        new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+                return null;
+            }
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false);
+                    System.out.println("❌ Error al cerrar sesión");
+                });
+            }
+        };
+        new Thread(task).start();
     }
 
     private void handleButtonCategoryLinkClick() throws IOException {
@@ -95,11 +122,11 @@ public class GestionFirstShopPage {
                     ICat.actualizarCategoria(categoria);
 
                     handleButtonCategoryLinkClick();
+
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
             });
-
             return card;
         } catch (IOException e) {
             e.printStackTrace();
@@ -107,14 +134,49 @@ public class GestionFirstShopPage {
         }
     }
 
-    public void goToUserPage(MouseEvent mouseEvent) throws IOException {
-        IUsuarioImpl iUsuario = new IUsuarioImpl();
-        Usuario actualUser = iUsuario.actualUser();
+    public void goToUserPage(MouseEvent mouseEvent) {
+        spinner.setVisible(true); // Mostrar el spinner
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                IUsuarioImpl iUsuario = new IUsuarioImpl();
+                Usuario actualUser = iUsuario.actualUser();
 
-        if(actualUser.getNombreUsuario().equalsIgnoreCase("invitado")){
-            new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
-        }else{
-            new SceneSelector(GFirstShopPage, "/org/example/artefatto/UserPage.fxml");
-        }
+                // Si no es invitado, redirigir a la página de usuario
+                if (!actualUser.getNombreUsuario().equalsIgnoreCase("invitado")) {
+                    Platform.runLater(() -> {
+                        try {
+                            new SceneSelector(GFirstShopPage, "/org/example/artefatto/UserPage.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } else {
+                    // Si es un invitado, redirigir a la página principal
+                    Platform.runLater(() -> {
+                        try {
+                            new SceneSelector(GFirstShopPage, "/org/example/artefatto/MainPage.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
+                return null;
+            }
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner si falla
+                    System.out.println("❌ Error al cambiar la escena");
+                });
+            }
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner después de la transición
+                });
+            }
+        };
+        new Thread(task).start(); // Ejecutar el task en un hilo aparte
     }
 }

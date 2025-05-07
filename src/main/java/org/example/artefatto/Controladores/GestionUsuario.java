@@ -1,11 +1,12 @@
 package org.example.artefatto.Controladores;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import org.example.artefatto.DAO.ICategoriaImpl;
 import org.example.artefatto.DAO.IUsuarioImpl;
 import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.SceneSelector;
@@ -24,6 +25,7 @@ public class GestionUsuario {
     public TextField TFieldEmail;
     public TextField TFieldDireccion;
     public TextField TFieldApodo;
+    public ProgressIndicator spinner;
 
     @FXML
     public void initialize() {
@@ -31,9 +33,44 @@ public class GestionUsuario {
     }
 
     @FXML
-    private void handleButtonCategoryShopLinkClick() throws IOException {
-        new SceneSelector(GUserPage, "/org/example/artefatto/FirstShopPage.fxml");
+    private void handleButtonCategoryShopLinkClick() {
+        spinner.setVisible(true); // Mostrar el spinner
+
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    // Realizar la operación que necesitas (cambiar de escena)
+                    Platform.runLater(() -> {
+                        try {
+                            // Redirigir a la página de la tienda
+                            new SceneSelector(GUserPage, "/org/example/artefatto/FirstShopPage.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner si falla
+                    System.out.println("❌ Error al cargar la página");
+                });
+            }
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner después de la operación
+                });
+            }
+        };
+        new Thread(task).start(); // Ejecutar el task en un hilo aparte
     }
+
 
     private void usuarioActivo(){
         IUsuarioImpl iUsuario = new IUsuarioImpl();
@@ -64,16 +101,54 @@ public class GestionUsuario {
         U.setCorreo(TFieldEmail.getText());
         U.setDireccion(TFieldDireccion.getText());
         U.setNombreUsuario(TFieldApodo.getText());
+        U.setConectado(iUsuario.actualUser().isConectado());
 
         iUsuario.actualizarUsuario(U);
     }
 
     @FXML
-    private void cerrarSesion() throws IOException {
-        SessionManager sM = new SessionManager();
-        IUsuarioImpl iUsuario = new IUsuarioImpl();
-        sM.logOut(iUsuario.actualUser());
-        new SceneSelector(GUserPage, "/org/example/artefatto/MainPage.fxml");
+    private void cerrarSesion() {
+        spinner.setVisible(true); // Mostrar el spinner
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    SessionManager sM = new SessionManager();
+                    IUsuarioImpl iUsuario = new IUsuarioImpl();
+                    sM.logOut(iUsuario.actualUser());
+
+                    // Redirigir a la página principal después de cerrar sesión
+                    Platform.runLater(() -> {
+                        try {
+                            new SceneSelector(GUserPage, "/org/example/artefatto/MainPage.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner si falla
+                    System.out.println("❌ Error al cerrar sesión");
+                });
+            }
+
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner después de la operación
+                });
+            }
+        };
+
+        new Thread(task).start(); // Ejecutar el task en un hilo aparte
     }
 
     @FXML
@@ -93,4 +168,41 @@ public class GestionUsuario {
             new SceneSelector(GUserPage, "/org/example/artefatto/MainPage.fxml");
         }
     }
+
+    public void handleButtonCartShopLinkClick(ActionEvent actionEvent) throws IOException {
+        spinner.setVisible(true); // Mostrar el spinner mientras se realiza la acción
+        Task<Void> task = new Task<>() {
+            @Override
+            protected Void call() {
+                try {
+                    Platform.runLater(() -> {
+                        try {
+                            new SceneSelector(GUserPage, "/org/example/artefatto/CartPage.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            @Override
+            protected void failed() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner si falla
+                    System.out.println("❌ Error al cambiar la escena");
+                });
+            }
+            @Override
+            protected void succeeded() {
+                Platform.runLater(() -> {
+                    spinner.setVisible(false); // Ocultar el spinner después de la transición
+                });
+            }
+        };
+        new Thread(task).start(); // Ejecutar el task en un hilo aparte
+    }
+
 }

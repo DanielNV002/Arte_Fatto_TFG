@@ -29,13 +29,19 @@
     </ImageView>
     <Pane id="PanelMenuIniciarSesion" layoutX="345.0" layoutY="140.0"/>
     <Line endX="475.0" layoutX="375.0" layoutY="190.0"/>
+
     <Label id="WelcomeText" layoutX="490.0" layoutY="155.0" text="Bienvenido"/>
+
     <Label id="InfoText" layoutX="390.0" layoutY="260.0" text="Nombre de Usuario"/>
     <TextField fx:id="TFieldUsername" id="FieldText" layoutX="390.0" layoutY="300.0"/>
+
     <Label id="InfoText" layoutX="390.0" layoutY="400.0" text="Contraseña"/>
     <PasswordField fx:id="TFieldContrasena" id="FieldText" layoutX="390.0" layoutY="440.0"/>
-    <Button id="ButtonIniciarSesion" onAction="#iniciarSesion" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
+
+    <Button fx:id="btnIniciarSesion" id="ButtonIniciarSesion" onAction="#iniciarSesion" layoutX="510.0" layoutY="550.0" mnemonicParsing="false" text="Entrar"/>
+    <ProgressIndicator fx:id="spinner" layoutX="1100" layoutY="700" visible="false"/>
     <Line endX="40.0" layoutX="590.0" layoutY="665.0"/>
+
     <Button onAction="#handleButtonRegistroLinkClick" id="ButtonRegistro" layoutX="450.0"
             layoutY="640.0" mnemonicParsing="false" text="Registrate"/>
     <Button onAction="#handleButtonInvitadoLinkClick" id="ButtonRegistro" layoutX="635.0"

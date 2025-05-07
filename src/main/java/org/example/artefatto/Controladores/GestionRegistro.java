@@ -1,6 +1,7 @@
 package org.example.artefatto.Controladores;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import org.example.artefatto.DAO.IUsuarioImpl;
@@ -39,22 +40,45 @@ public class GestionRegistro {
         IUsuarioImpl iUsuario = new IUsuarioImpl();
         try {
             iUsuario.addUsuario(crearUsuario());
+            new SceneSelector(GRegistro, "/org/example/artefatto/MainPage.fxml");
+        } catch (IllegalArgumentException e) {
+            mostrarAlerta("Registro inválido", e.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            mostrarAlerta("Error", "Ha ocurrido un error inesperado.");
+            e.printStackTrace();
         }
-
-        new SceneSelector(GRegistro, "/org/example/artefatto/MainPage.fxml");
     }
 
     private Usuario crearUsuario() throws IOException {
-        String username = TFieldUsername.getText();
-        String contrasena = TFieldContrasena.getText();
-        String correo = TFieldCorreo.getText();
-        String nombre = TFieldName.getText();
-        String apellidos = TFieldApellidos.getText();
-        String direccion = TFieldDireccion.getText();
+        String username = TFieldUsername.getText().trim();
+        String contrasena = TFieldContrasena.getText().trim();
+        String contrasenaConfirm = TFieldContrasenaConfirm.getText().trim();
+        String correo = TFieldCorreo.getText().trim();
+        String nombre = TFieldName.getText().trim();
+        String apellidos = TFieldApellidos.getText().trim();
+        String direccion = TFieldDireccion.getText().trim();
         String imagen = "/img/Users/UserBaseProfile.png";
+
+        // Validaciones de longitud mínima
+        if (username.length() < 5 || contrasena.length() < 5 || contrasenaConfirm.length() < 5 ||
+                correo.length() < 5 || nombre.length() < 5 || apellidos.length() < 5 || direccion.length() < 5) {
+            throw new IllegalArgumentException("Todos los campos deben tener al menos 5 caracteres.");
+        }
+
+        // Validación de contraseñas
+        if (!contrasena.equals(contrasenaConfirm)) {
+            throw new IllegalArgumentException("Las contraseñas no coinciden.");
+        }
 
         return new Usuario(null, apellidos, contrasena, correo, direccion, nombre, username, imagen, false);
     }
+
+    private void mostrarAlerta(String titulo, String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 }

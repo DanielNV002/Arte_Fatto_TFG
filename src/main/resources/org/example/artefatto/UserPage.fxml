@@ -8,6 +8,7 @@
 <?import javafx.scene.control.Label?>
 
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ProgressIndicator?>
 <AnchorPane fx:id="GUserPage" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.artefatto.Controladores.GestionUsuario"
@@ -30,7 +31,7 @@
                  text="Back" onAction="#handleButtonCategoryShopLinkClick"/>
 
         <Label id="TituloTienda2" layoutX="470.0" layoutY="10.0" text="Arte Fatto" textAlignment="CENTER"/>
-        <Button id="AppButton" layoutX="760.0" layoutY="25.0" mnemonicParsing="false">
+        <Button id="AppButton" layoutX="760.0" layoutY="25.0" mnemonicParsing="false" onAction="#handleButtonCartShopLinkClick">
             <graphic>
                 <ImageView fitWidth="25.0" fitHeight="25">
                     <Image url="@../../../img/compra.png" />
@@ -114,5 +115,7 @@
                 onAction="#eliminarCuenta"
         />
     </Pane>
+    <ProgressIndicator fx:id="spinner" layoutX="1100" layoutY="700" visible="false"/>
+
 
 </AnchorPane>

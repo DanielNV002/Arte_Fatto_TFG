@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ProgressIndicator?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             xmlns="http://javafx.com/javafx"
             fx:controller="org.example.artefatto.Controladores.CardItems"
@@ -35,4 +36,7 @@
             prefWidth="140"
             text="Ver más"
             alignment="CENTER"/>
+
+    <ProgressIndicator fx:id="spinner" visible="false" layoutX="100" layoutY="190" maxWidth="50" maxHeight="50"/>
+
 </AnchorPane>

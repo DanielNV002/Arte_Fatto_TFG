@@ -108,4 +108,5 @@
             </Pane>
         </Pane>
     </Pane>
+    <ProgressIndicator fx:id="spinner" layoutX="1100" layoutY="700" visible="false"/>
 </AnchorPane>
