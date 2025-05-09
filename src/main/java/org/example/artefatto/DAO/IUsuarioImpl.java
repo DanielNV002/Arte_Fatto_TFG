@@ -83,23 +83,39 @@ public class IUsuarioImpl implements IUsuario {
 
     @Override
     public void eliminarCuenta(Usuario usuario) {
+        if (usuario == null || usuario.getIdUsuario() == null) {
+            throw new IllegalArgumentException("El usuario o su ID no pueden ser nulos");
+        }
+
+        Session session = null;
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
-            // Obtener el usuario desde la base de datos usando su ID
-            Usuario usuarioExistente = session.get(Usuario.class, usuario.getIdUsuario());
+            // Eliminar compras del usuario
+            session.createQuery("DELETE FROM Compras WHERE id_usuario.idUsuario = :idUsuario")
+                    .setParameter("idUsuario", usuario.getIdUsuario())
+                    .executeUpdate();
 
+            // Eliminar usuario
+            Usuario usuarioExistente = session.get(Usuario.class, usuario.getIdUsuario());
             if (usuarioExistente != null) {
-                session.remove(usuarioExistente);  // Eliminar el usuario
+                session.remove(usuarioExistente);
             }
-//a
+
             transaction.commit();
+
         } catch (Exception e) {
-            if (transaction != null) {
+            if (transaction != null && transaction.isActive()) {
                 transaction.rollback();
             }
-            e.printStackTrace();  // Manejo básico de errores
+            e.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.close();
+            }
         }
     }
 
