@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.example.artefatto.DAO.ICategoriaImpl;
 import org.example.artefatto.DAO.IUsuarioImpl;
 import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.SceneSelector;
