@@ -97,7 +97,6 @@ public class MainApplication extends Application {
         IMainAppImpl mainApp = new IMainAppImpl();
         //mainApp.generarCategoriasBase();
         //cargarBBDD();
-
         launch();
     }
 }
