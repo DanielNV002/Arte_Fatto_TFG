@@ -36,7 +36,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button id="AppButton" layoutX="410.0" layoutY="25.0" mnemonicParsing="false">
+        <Button id="AppButton" layoutX="410.0" layoutY="25.0" mnemonicParsing="false" onAction="#infoAlert">
             <graphic>
                 <ImageView fitWidth="25" fitHeight="25">
                     <Image url="@../../../img/favoritos.png" />

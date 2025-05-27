@@ -12,18 +12,36 @@ import java.util.List;
 public class IUsuarioImpl implements IUsuario {
     @Override
     public void addUsuario(Usuario usuario) {
+        Session session = null;
         Transaction transaction = null;
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.beginTransaction();  // Iniciar transacción
-            session.persist(usuario);  // Guardar el usuario en la base de datos
-            transaction.commit();  // Confirmar transacción
+
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+
+            session.persist(usuario);
+            transaction.commit();
+
+            System.out.println("✅ Usuario registrado correctamente: " + usuario.getNombreUsuario());
+
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();  // Revertir en caso de error
+            if (transaction != null && transaction.isActive()) {
+                try {
+                    transaction.rollback();
+                } catch (Exception rollbackEx) {
+                    System.err.println("⚠ Error durante rollback: " + rollbackEx.getMessage());
+                }
             }
-            e.printStackTrace(); // Manejo básico de errores
+            System.err.println("❌ Error al registrar usuario: " + usuario.getNombreUsuario());
+            e.printStackTrace();
+
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
     }
+
 
     @Override
     public Usuario comprobarUsuario(String username, String password) {

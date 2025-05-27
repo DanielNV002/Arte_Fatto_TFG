@@ -204,4 +204,12 @@ public class GestionUsuario {
         new Thread(task).start(); // Ejecutar el task en un hilo aparte
     }
 
+    @FXML
+    private void infoAlert() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vista no disponible");
+        alert.setHeaderText(null);
+        alert.setContentText("Seccion en mantenimiento. Disculpe las molestias.");
+        alert.showAndWait();
+    }
 }

@@ -5,6 +5,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
 import javafx.scene.input.MouseEvent;
@@ -256,5 +257,14 @@ public class GestionCategoryShopPage {
             }
         };
         new Thread(task).start(); // Ejecutar el task en un hilo aparte
+    }
+
+    @FXML
+    private void infoAlert() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vista no disponible");
+        alert.setHeaderText(null);
+        alert.setContentText("Seccion en mantenimiento. Disculpe las molestias.");
+        alert.showAndWait();
     }
 }

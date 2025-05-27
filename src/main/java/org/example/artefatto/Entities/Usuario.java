@@ -29,7 +29,7 @@ public class Usuario {
     private String direccion;
 
     @Column(name = "contrasena", nullable = false, length = 100)
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres.")
+    @Size(min = 5, message = "La contraseña debe tener al menos 8 caracteres.")
     private String contrasena;
 
     @Column(name = "correo", nullable = false, unique = true, length = 50)

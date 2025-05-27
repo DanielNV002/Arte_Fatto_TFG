@@ -38,7 +38,7 @@
                 </ImageView>
             </graphic>
         </Button>
-        <Button id="AppButton" layoutX="410.0" layoutY="25.0" mnemonicParsing="false">
+        <Button id="AppButton" layoutX="410.0" layoutY="25.0" mnemonicParsing="false" onAction="#infoAlert">
             <graphic>
                 <ImageView fitWidth="25" fitHeight="25">
                     <Image url="@../../../img/favoritos.png" />
@@ -92,8 +92,8 @@
                 prefHeight="80"
                 mnemonicParsing="false"
                 text="Gestionar Productos"
+                onAction="#infoAlert"
         />
-        <Label id="infoUpdateText" layoutX="100.0" layoutY="270.0" text="*Estará en la siguiente update"/>
         <Button
                 id="ButtonGuardar"
                 layoutX="20.0"

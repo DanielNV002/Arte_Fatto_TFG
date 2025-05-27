@@ -12,7 +12,7 @@ module org.example.artefatto {
     requires java.naming;
 
     opens org.example.artefatto to javafx.fxml;
-    opens org.example.artefatto.Entities to org.hibernate.orm.core;
+    opens org.example.artefatto.Entities;
 
     exports org.example.artefatto;
     exports org.example.artefatto.Controladores;

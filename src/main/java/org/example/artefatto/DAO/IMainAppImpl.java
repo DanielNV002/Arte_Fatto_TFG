@@ -56,12 +56,18 @@ public class IMainAppImpl implements IMainApp {
 
     @Override
     public void anadirProducto(String nombre, String descripcion, Usuario usuario, Categoria categoria, double precio, boolean disponible, String imagen) {
+
+        Session session = null;
         Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
 
-            // Verificar si ya existe un producto con el mismo nombre (opcional)
+            // Reasociar entidades
+            usuario = session.get(Usuario.class, usuario.getIdUsuario());
+            categoria = session.get(Categoria.class, categoria.getId_categoria());
+
             Long count = session.createQuery(
                             "SELECT COUNT(p) FROM Producto p WHERE p.nombre = :nombre", Long.class)
                     .setParameter("nombre", nombre)
@@ -69,26 +75,38 @@ public class IMainAppImpl implements IMainApp {
 
             if (count != null && count > 0) {
                 System.out.println("⚠ Ya existe un producto con el nombre: " + nombre);
-                return;
+            } else {
+                Producto producto = new Producto();
+                producto.setNombre(nombre);
+                producto.setDescripcion(descripcion);
+                producto.setUsuario(usuario);
+                producto.setCategoria(categoria);
+                producto.setPrecio(precio);
+                producto.setDisponible(disponible);
+                producto.setImagen(imagen);
+
+                session.persist(producto);
+                transaction.commit();
+                System.out.println("✅ Producto añadido correctamente: " + nombre);
             }
 
-            Producto producto = new Producto();
-            producto.setNombre(nombre);
-            producto.setDescripcion(descripcion);
-            producto.setUsuario(usuario);
-            producto.setCategoria(categoria);
-            producto.setPrecio(precio);
-            producto.setDisponible(disponible);
-            producto.setImagen(imagen);  // Asegúrate de pasar la ruta correcta
-
-            session.persist(producto);
-            transaction.commit();
-            System.out.println("✅ Producto añadido correctamente: " + nombre);
-
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) transaction.rollback();
+            if (transaction != null && transaction.isActive()) {
+                try {
+                    transaction.rollback();
+                } catch (Exception rollbackEx) {
+                    System.err.println("⚠ Error durante rollback: " + rollbackEx.getMessage());
+                }
+            }
+            System.err.println("❌ Error al añadir producto: " + nombre);
             e.printStackTrace();
+
+        } finally {
+            if (session != null && session.isOpen()) {
+                session.close();
+            }
         }
+
     }
 
     @Override
@@ -101,8 +119,8 @@ public class IMainAppImpl implements IMainApp {
             transaction = session.beginTransaction();
 
             // Verificar si ya existe un usuario con el mismo correo o nombreUsuario
-            Long count = session.createQuery(
-                            "SELECT COUNT(u) FROM Usuario u WHERE u.correo = :correo OR u.nombreUsuario = :nombreUsuario", Long.class)
+           Long count = session.createQuery(
+                            "SELECT COUNT(u) FROM Usuario u WHERE u.correo = :correo AND u.nombreUsuario = :nombreUsuario", Long.class)
                     .setParameter("correo", correo)
                     .setParameter("nombreUsuario", nombreUsuario)
                     .uniqueResult();
@@ -128,8 +146,19 @@ public class IMainAppImpl implements IMainApp {
             System.out.println("✅ Usuario añadido correctamente: " + nombreUsuario);
 
         } catch (Exception e) {
-            if (transaction != null && transaction.isActive()) transaction.rollback();
+            if (transaction != null && transaction.isActive()) {
+                try {
+                    transaction.rollback();
+                } catch (Exception rollbackEx) {
+                    rollbackEx.printStackTrace();
+                }
+            }
             e.printStackTrace();
+            Throwable cause = e.getCause();
+            while (cause != null) {
+                cause.printStackTrace();
+                cause = cause.getCause();
+            }
         }
     }
 

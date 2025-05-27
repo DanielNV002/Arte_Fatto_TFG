@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -141,5 +142,14 @@ public class GestionCart {
             iCompras.compraCompletada(compra);
         }
         cargarCompras();
+    }
+
+    @FXML
+    private void infoAlert() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vista no disponible");
+        alert.setHeaderText(null);
+        alert.setContentText("Seccion en mantenimiento. Disculpe las molestias.");
+        alert.showAndWait();
     }
 }

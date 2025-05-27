@@ -54,16 +54,16 @@ public class MainApplication extends Application {
         IUsuarioImpl iUsu = new IUsuarioImpl();
 
         // USUARIOS ----------------------------------------------------------------------------------------------------
-        mainApp.anadirUsuario(null, "admin", "admin", "admin", "admin", "admin", "admin", "/img/Users/UserBaseProfile.png", false);
-        mainApp.anadirUsuario(null, "invitado", "invitado", "invitado", "invitado", "invitado", "invitado", "/img/Users/UserBaseProfile.png", false);
+        mainApp.anadirUsuario(null, "administrador", "administrador", "administrador@example.com", "administrador address", "Administrador", "admin", "/img/Users/UserBaseProfile.png", false);
+        mainApp.anadirUsuario(null, "invitado", "invitado", "invitado@example.com", "invitado address", "Invitado", "invitado", "/img/Users/UserBaseProfile.png", false);
 
-        Usuario U = iUsu.comprobarUsuario("admin", "admin");
+        Usuario U = iUsu.comprobarUsuario("admin", "administrador");
         ICategoriaImpl iCat = new ICategoriaImpl();
 
         // BARAJAS -----------------------------------------------------------------------------------------------------
         mainApp.anadirProducto("Baraja Dorada", "Una baraja de lujo con detalles dorados que reflejan elegancia y distinción.", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "src/main/resources/img/Product/Barajas/Baraja001.jpg");
         mainApp.anadirProducto("Baraja Real", "Inspirada en la nobleza, esta baraja ofrece un diseño clásico con un toque regio.", U, iCat.getCategoriesFromDatabase().get(1), 20.0, true, "src/main/resources/img/Product/Barajas/Baraja002.jpg");
-        mainApp.anadirProducto("Baraja Mini-Red", "Una baraja compacta con un vibrante diseño en rojo, perfecta para llevar a todas partes", U, iCat.getCategoriesFromDatabase().get(1), 25.0, true, "src/main/resources/img/Product/Barajas/Baraja003.jpg");
+        mainApp.anadirProducto("Baraja Mini Red", "Una baraja compacta con un vibrante diseño en rojo, perfecta para llevar a todas partes", U, iCat.getCategoriesFromDatabase().get(1), 25.0, true, "src/main/resources/img/Product/Barajas/Baraja003.jpg");
         mainApp.anadirProducto("Baraja Gatuna", "Divertida y encantadora, esta baraja está decorada con adorables ilustraciones de gatos", U, iCat.getCategoriesFromDatabase().get(1), 30.0, true, "src/main/resources/img/Product/Barajas/Baraja004.jpg");
         mainApp.anadirProducto("Baraja Mitica", "Mitos y leyendas cobran vida en esta baraja con un arte fantástico y misterioso", U, iCat.getCategoriesFromDatabase().get(1), 45.0, true, "src/main/resources/img/Product/Barajas/Baraja005.jpg");
 

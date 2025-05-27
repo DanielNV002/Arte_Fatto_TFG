@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressIndicator;
@@ -162,5 +163,14 @@ public class GProductInfoPage {
         PauseTransition pause = new PauseTransition(Duration.seconds(1));
         pause.setOnFinished(event -> labelAlCarrito.setText("")); // borra después de 1s
         pause.play();
+    }
+
+    @FXML
+    private void infoAlert() throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Vista no disponible");
+        alert.setHeaderText(null);
+        alert.setContentText("Seccion en mantenimiento. Disculpe las molestias.");
+        alert.showAndWait();
     }
 }

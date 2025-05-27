@@ -70,6 +70,11 @@ public class GestionRegistro {
             throw new IllegalArgumentException("Las contraseñas no coinciden.");
         }
 
+        // Validación de correo
+        if (!correo.contains("@")) {
+            throw new IllegalArgumentException("El correo es inválido. Debe contener '@' y '.'.\n Ejemplo: example@example.com");
+        }
+
         return new Usuario(null, apellidos, contrasena, correo, direccion, nombre, username, imagen, false);
     }
 
@@ -80,5 +85,4 @@ public class GestionRegistro {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
 }
