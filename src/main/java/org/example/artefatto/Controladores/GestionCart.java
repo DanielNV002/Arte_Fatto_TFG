@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -22,6 +19,7 @@ import org.example.artefatto.Entities.Usuario;
 import org.example.artefatto.Util.SceneSelector;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 public class GestionCart {
@@ -33,6 +31,9 @@ public class GestionCart {
     @FXML
     public ScrollPane scrollPanel;
     public Pane PanelInfoDatosCompra;
+    public TextField nTarjetaTextField;
+    public TextField fCaducidadTextField;
+    public TextField cvvTextField;
     @FXML
     private VBox PanelInfo;
 
@@ -136,12 +137,36 @@ public class GestionCart {
         IUsuarioImpl iUsuario = new IUsuarioImpl();
         Usuario uActivo = iUsuario.actualUser();
         IComprasImpl iCompras = new IComprasImpl();
+        LocalDate currentDate = LocalDate.now();
 
-        List<Compras> compras = iCompras.listaDeCompras(uActivo.getIdUsuario());
-        for (Compras compra : compras) {
-            iCompras.compraCompletada(compra);
+        //Bloque para la fecha
+        String[] dateParts = fCaducidadTextField.getText().split("/");
+        int day = Integer.parseInt(dateParts[0]);
+        int month = Integer.parseInt(dateParts[1]);
+        int year = Integer.parseInt(dateParts[2]);
+        LocalDate expiryDate = LocalDate.of(year, month, day);
+
+        //Comprobar Campos Vacíos
+        if(nTarjetaTextField.getText().equalsIgnoreCase("") || fCaducidadTextField.getText().equalsIgnoreCase("") ||
+                cvvTextField.getText().equalsIgnoreCase("") || nTarjetaTextField.getText().length() < 16 ||
+                fCaducidadTextField.getText().length() < 5 || cvvTextField.getText().length() < 3){
+            mostrarAlerta();
         }
-        cargarCompras();
+        //Comprobar Fecha Caducidad
+        else if ((dateParts.length == 3) && (expiryDate.isBefore(currentDate))) {
+            mostrarAlerta();
+
+        } else {
+            List<Compras> compras = iCompras.listaDeCompras(uActivo.getIdUsuario());
+            for (Compras compra : compras) {
+                iCompras.compraCompletada(compra);
+            }
+            cargarCompras();
+            nTarjetaTextField.setText("");
+            fCaducidadTextField.setText("");
+            cvvTextField.setText("");
+            compraAlert();
+        }
     }
 
     @FXML
@@ -150,6 +175,22 @@ public class GestionCart {
         alert.setTitle("Vista no disponible");
         alert.setHeaderText(null);
         alert.setContentText("Seccion en mantenimiento. Disculpe las molestias.");
+        alert.showAndWait();
+    }
+
+    private void mostrarAlerta() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("ERROR EN LOS CAMPOS DE PAGO");
+        alert.setHeaderText(null);
+        alert.setContentText("Rellene todos los campos con valores válidos");
+        alert.showAndWait();
+    }
+
+    private void compraAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Pago Realizado");
+        alert.setHeaderText(null);
+        alert.setContentText("Pago Realizado.\n Gracias por su compra");
         alert.showAndWait();
     }
 }

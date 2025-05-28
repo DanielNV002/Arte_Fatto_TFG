@@ -95,8 +95,8 @@ public class MainApplication extends Application {
         Font font = Font.loadFont(MainApplication.class.getResourceAsStream("/resources/fonts/Shrikhand-Regular.ttf"), 20);
         crearTablas();
         IMainAppImpl mainApp = new IMainAppImpl();
-        //mainApp.generarCategoriasBase();
-        //cargarBBDD();
+        mainApp.generarCategoriasBase();
+        cargarBBDD();
         launch();
     }
 }

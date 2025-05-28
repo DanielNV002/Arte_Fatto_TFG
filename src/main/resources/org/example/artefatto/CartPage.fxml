@@ -59,19 +59,19 @@
                     <Image url="@../../../img/pago-con-tarjeta-de-credito.png"/>
                 </ImageView>
                 <Label id="LabelInfo" layoutX="65.0" layoutY="45.0" text="Numero de tarjeta"/>
-                <TextField id="FieldText" layoutX="15.0" layoutY="80.0" prefHeight="40.0" prefWidth="300.0"/>
+                <TextField fx:id="nTarjetaTextField" id="FieldText" layoutX="15.0" layoutY="80.0" prefHeight="40.0" prefWidth="300.0"/>
 
                 <ImageView id="UserButton" layoutX="15.0" layoutY="160" fitWidth="35" fitHeight="35">
                     <Image url="@../../../img/time-and-calendar.png"/>
                 </ImageView>
                 <Label id="LabelInfo" layoutX="65.0" layoutY="162" text="Fecha de Caducidad"/>
-                <TextField id="FieldText" layoutX="15.0" layoutY="200" prefHeight="40.0" prefWidth="300.0" promptText="DD/MM/YYYY"/>
+                <TextField fx:id="fCaducidadTextField" id="FieldText" layoutX="15.0" layoutY="200" prefHeight="40.0" prefWidth="300.0" promptText="DD/MM/YYYY"/>
 
                 <ImageView id="UserButton" layoutX="15.0" layoutY="280" fitWidth="35" fitHeight="35">
                     <Image url="@../../../img/cerrar-con-llave.png"/>
                 </ImageView>
                 <Label id="LabelInfo" layoutX="65.0" layoutY="282" text="CVV"/>
-                <TextField id="FieldText" layoutX="15.0" layoutY="320" prefHeight="40.0" prefWidth="300.0"/>
+                <TextField fx:id="cvvTextField" id="FieldText" layoutX="15.0" layoutY="320" prefHeight="40.0" prefWidth="300.0"/>
 
                 <Pane fx:id="PanelInfoDatosCompra" id="PanelInfoCompra_2" layoutX="10" layoutY="400" prefHeight="60.0"
                       prefWidth="500.0"/>
